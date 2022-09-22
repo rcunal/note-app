@@ -1,6 +1,7 @@
 package com.task.noteapp.core.db
 
-import androidx.room.Dao
+import androidx.paging.PagingSource
+import androidx.room.*
 
 /**
  * @author: R. Cemre Ünal,
@@ -9,4 +10,26 @@ import androidx.room.Dao
 
 @Dao
 interface NoteDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNote(note: Note)
+
+    @Query("DELETE FROM note")
+    suspend fun clearNotes()
+
+    @Delete
+    fun deleteNote(model: Note)
+
+    @Query(
+        """
+        SELECT *
+        FROM note
+        WHERE LOWER(content) LIKE '%' || LOWER(:query) || '%' OR 
+            LOWER(title) LIKE '%' || LOWER(:query)
+        """
+    )
+    fun searchNote(query: String): PagingSource<Int, Note>
+
+    @Query("SELECT * FROM note")
+    fun getAllNotes(): PagingSource<Int, Note>
 }

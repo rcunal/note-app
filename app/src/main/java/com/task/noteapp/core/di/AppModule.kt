@@ -3,11 +3,12 @@ package com.task.noteapp.core.di
 import android.app.Application
 import androidx.room.Room
 import com.task.noteapp.core.db.NoteDatabase
-import com.task.noteapp.utils.Constant.NOTE_DATABASE_NAME
+import com.task.noteapp.core.utils.Constant.NOTE_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 /**
@@ -27,5 +28,11 @@ object AppModule {
             NoteDatabase::class.java,
             NOTE_DATABASE_NAME
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDispatcher(): Dispatchers {
+        return Dispatchers
     }
 }

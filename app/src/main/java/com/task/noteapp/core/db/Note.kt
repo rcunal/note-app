@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 /**
  * @author: R. Cemre Ünal,
@@ -12,10 +13,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity
-data class NoteEntity(
+data class Note(
     @PrimaryKey(autoGenerate = true)
-    val dbId: Int,
+    val dbId: Int = 0,
+    val createDate: Date,
+    val modifyDate: Date? = null,
     val title: String,
-    val description: String? = null,
-    val imageUrl: String? = null
+    val content: String? = null,
+    val imageUrl: String? = null,
 ) : Parcelable

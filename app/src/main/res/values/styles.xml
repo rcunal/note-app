@@ -2,6 +2,12 @@
 <resources>
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/shark</item>
+    </style>
+
+    <style name="ImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
     </style>
 
 </resources>
