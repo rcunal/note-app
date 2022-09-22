@@ -2,14 +2,15 @@ package com.task.noteapp.features.home.ui
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.task.noteapp.core.base.BaseFragment
 import com.task.noteapp.core.db.Note
-import com.task.noteapp.core.extension.collectFlow
-import com.task.noteapp.core.extension.toPx
+import com.task.noteapp.core.extension.collectLatestFlow
 import com.task.noteapp.databinding.FragmentHomeBinding
 import com.task.noteapp.features.add_note.domain.model.NoteDetailsType
 import com.task.noteapp.features.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * @author: R. Cemre Ünal,
@@ -40,10 +41,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun onCreateFinished() {
 
-        collectFlow(viewModel.state, stateCollector)
+        collectLatestFlow(viewModel.state, stateCollector)
         viewModel.getNotes()
-        val decoration = ItemDecoration(80f.toPx)
-        binding.rvHomePage.addItemDecoration(decoration)
         binding.rvHomePage.adapter = noteAdapter
     }
 
@@ -63,6 +62,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     )
                 )
             }
+
+            rvHomePage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    if (dy < 0 && !floatingActionButton.isShown)
+                        floatingActionButton.show()
+                    else if (dy > 0 && floatingActionButton.isShown)
+                        floatingActionButton.hide()
+                }
+            })
         }
     }
 }

@@ -27,6 +27,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
             binding.etTitle.showSoftKeyboard()
         }
         collectFlow(viewModel.state, stateCollector)
+        collectFlow(viewModel.event, eventCollector)
     }
 
     private val stateCollector: suspend (AddNoteViewModel.UiState) -> Unit = { uiState ->
@@ -35,6 +36,12 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
             AddNoteViewModel.State.VIEW_NOTE_DETAILS -> onViewNoteDetailsState(uiState)
             AddNoteViewModel.State.ADD_NEW_NOTE -> onAddNewNoteState(uiState.photoUrl)
             AddNoteViewModel.State.EDIT_NOTE -> onEditNoteState(uiState)
+        }
+    }
+
+    private val eventCollector: suspend (AddNoteViewModel.Event) -> Unit = { event ->
+        when (event) {
+            AddNoteViewModel.Event.NoteAddedSuccessfully -> findNavController().navigateUp()
         }
     }
 
@@ -103,7 +110,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
 
     private fun showDialogForPhotoInput() {
         val dialogBinding = DialogAddPhotoBinding.inflate(LayoutInflater.from(requireContext()))
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireContext(), R.style.DarkDialog)
             .setTitle(getString(R.string.add_photo))
             .setView(dialogBinding.root)
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
@@ -115,7 +122,10 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
     }
 
     private fun showRemovePhotoDialog() {
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(
+            requireContext(),
+            R.style.DarkDialog
+        )
             .setTitle(getString(R.string.remove_photo))
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
                 viewModel.setPhoto(null)
@@ -153,9 +163,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
                     }
                     else -> {
                         viewModel.saveNote(etTitle.text.toString(), etContent.text.toString())
-                            .also {
-                                findNavController().navigateUp()
-                            }
                     }
                 }
             }
@@ -171,9 +178,10 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
                     dialogBinding.tvModifiedDateInfo.text =
                         note.modifyDate.toString(Constant.DATE_TIME_FORMAT)
                 } else {
+                    dialogBinding.tvModifiedDateTitle.gone()
                     dialogBinding.tvModifiedDateInfo.gone()
                 }
-                val dialog = AlertDialog.Builder(requireContext())
+                val dialog = AlertDialog.Builder(requireContext(), R.style.DarkDialog)
                     .setView(dialogBinding.root).create()
                 dialog.show()
             }

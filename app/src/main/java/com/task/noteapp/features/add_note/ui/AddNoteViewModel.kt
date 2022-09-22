@@ -6,8 +6,10 @@ import com.task.noteapp.core.db.Note
 import com.task.noteapp.features.add_note.domain.NoteRepository
 import com.task.noteapp.features.add_note.domain.model.NoteDetailsType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.*
@@ -25,6 +27,9 @@ class AddNoteViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(UiState())
     val state = _state.asStateFlow()
+
+    private val _event = Channel<Event>(Channel.UNLIMITED)
+    val event = _event.receiveAsFlow()
 
     fun setUiState(noteDetailsType: NoteDetailsType, note: Note?) {
         val currentState = when (noteDetailsType) {
@@ -76,7 +81,12 @@ class AddNoteViewModel @Inject constructor(
                     modifyDate = modifyDate
                 )
             )
+            _event.send(Event.NoteAddedSuccessfully)
         }
+    }
+
+    sealed interface Event {
+        object NoteAddedSuccessfully : Event
     }
 
     enum class State {

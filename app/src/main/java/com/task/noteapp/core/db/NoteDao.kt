@@ -18,7 +18,7 @@ interface NoteDao {
     suspend fun clearNotes()
 
     @Delete
-    fun deleteNote(model: Note)
+    suspend fun deleteNote(model: Note)
 
     @Query(
         """
