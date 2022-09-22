@@ -3,6 +3,7 @@ buildscript {
     ext.kotlin_version = "1.7.10"
     ext.hilt_version = "2.38.1"
     ext.android_plugin_version = "7.2.2"
+    ext.paging_version = "3.1.1"
     ext.navigation_version = "2.5.2"
     ext.room_version = "2.4.3"
     ext.ktx_version = "2.5.1"

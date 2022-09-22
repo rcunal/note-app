@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.task.noteapp"
@@ -42,7 +42,7 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -65,6 +65,9 @@ dependencies {
     implementation "androidx.room:room-paging:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
@@ -74,4 +77,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_version"
     // Fragment
     implementation 'androidx.fragment:fragment-ktx:1.5.3'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3"
+
+    //swipe layout
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 }
