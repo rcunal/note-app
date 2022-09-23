@@ -40,10 +40,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val noteAdapter = NoteAdapter(noteClickListener)
 
     override fun onCreateFinished() {
-
-        collectLatestFlow(viewModel.state, stateCollector)
-//        viewModel.getNotes()
         binding.rvHomePage.adapter = noteAdapter
+        collectLatestFlow(viewModel.state, stateCollector)
     }
 
     private val stateCollector: suspend (HomeViewModel.UiState) -> Unit = { uiState ->

@@ -1,14 +1,10 @@
 package com.task.noteapp.features.add_note_view_note.common.data
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
+import androidx.paging.PagingSource
 import com.task.noteapp.features.add_note_view_note.common.db.NoteDatabase
 import com.task.noteapp.features.add_note_view_note.common.domain.NoteRepository
+import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,16 +34,7 @@ class NoteRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getNotes(): Flow<PagingData<Note>> {
-        return Pager(
-            PagingConfig(
-                pageSize = 20,
-                initialLoadSize = 10,
-                maxSize = 100,
-                enablePlaceholders = false
-            )
-        ) {
-            dao.getAllNotes()
-        }.flow.flowOn(dispatchers.IO)
+    override fun getNotes(): PagingSource<Int, Note> {
+        return dao.getAllNotes()
     }
 }

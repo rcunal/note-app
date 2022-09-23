@@ -1,8 +1,7 @@
 package com.task.noteapp.features.add_note_view_note.common.domain
 
-import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
-import kotlinx.coroutines.flow.Flow
 
 /**
  * @author: R. Cemre Ünal,
@@ -11,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
 interface NoteRepository {
     suspend fun addNote(note: Note)
     suspend fun deleteNote(note: Note)
-    suspend fun getNotes(): Flow<PagingData<Note>>
+    fun getNotes(): PagingSource<Int, Note>
 }
