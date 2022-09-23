@@ -31,7 +31,7 @@ protected constructor(
         if (_binding == null) {
             _binding = inflate(inflater, container, false)
         }
-        _binding?.lifecycleOwner = this
+        _binding?.lifecycleOwner = viewLifecycleOwner
         return _binding!!.root
     }
 

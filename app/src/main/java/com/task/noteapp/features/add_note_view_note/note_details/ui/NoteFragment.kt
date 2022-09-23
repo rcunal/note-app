@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.add_note.ui
+package com.task.noteapp.features.add_note_view_note.note_details.ui
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
@@ -11,17 +11,17 @@ import com.task.noteapp.core.extension.*
 import com.task.noteapp.core.utils.Constant
 import com.task.noteapp.databinding.DialogAddPhotoBinding
 import com.task.noteapp.databinding.DialogNoteInfoLayoutBinding
-import com.task.noteapp.databinding.FragmentAddNoteBinding
-import com.task.noteapp.features.add_note_view_note.add_note.AddNoteViewModel
+import com.task.noteapp.databinding.FragmentNoteBinding
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
+import com.task.noteapp.features.add_note_view_note.note_details.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBinding::inflate) {
+class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate) {
 
-    private val viewModel by viewModels<AddNoteViewModel>()
-    private val args by navArgs<AddNoteFragmentArgs>()
+    private val viewModel by viewModels<NoteViewModel>()
+    private val args by navArgs<NoteFragmentArgs>()
 
     override fun onCreateFinished() {
         if (args.noteDetailsType == NoteDetailsType.ADD) {
@@ -31,22 +31,22 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
         collectFlow(viewModel.event, eventCollector)
     }
 
-    private val stateCollector: suspend (AddNoteViewModel.UiState) -> Unit = { uiState ->
+    private val stateCollector: suspend (NoteViewModel.UiState) -> Unit = { uiState ->
         when (uiState.currentState) {
-            AddNoteViewModel.State.INITIAL -> viewModel.setUiState(args.noteDetailsType, args.note)
-            AddNoteViewModel.State.VIEW_NOTE_DETAILS -> onViewNoteDetailsState(uiState)
-            AddNoteViewModel.State.ADD_NEW_NOTE -> onAddNewNoteState(uiState.photoUrl)
-            AddNoteViewModel.State.EDIT_NOTE -> onEditNoteState(uiState)
+            NoteViewModel.State.INITIAL -> viewModel.setUiState(args.noteDetailsType, args.note)
+            NoteViewModel.State.VIEW_NOTE_DETAILS -> onViewNoteDetailsState(uiState)
+            NoteViewModel.State.ADD_NEW_NOTE -> onAddNewNoteState(uiState.photoUrl)
+            NoteViewModel.State.EDIT_NOTE -> onEditNoteState(uiState)
         }
     }
 
-    private val eventCollector: suspend (AddNoteViewModel.Event) -> Unit = { event ->
+    private val eventCollector: suspend (NoteViewModel.Event) -> Unit = { event ->
         when (event) {
-            AddNoteViewModel.Event.NoteAddedSuccessfully -> findNavController().navigateUp()
+            NoteViewModel.Event.NoteAddedSuccessfully -> findNavController().navigateUp()
         }
     }
 
-    private fun onViewNoteDetailsState(uiState: AddNoteViewModel.UiState) {
+    private fun onViewNoteDetailsState(uiState: NoteViewModel.UiState) {
         with(binding) {
             etTitle.isEnabled = false
             etContent.isEnabled = false
@@ -85,7 +85,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
         }
     }
 
-    private fun onEditNoteState(uiState: AddNoteViewModel.UiState) {
+    private fun onEditNoteState(uiState: NoteViewModel.UiState) {
         with(binding) {
             etTitle.isEnabled = true
             etContent.isEnabled = true
@@ -140,8 +140,8 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(FragmentAddNoteBind
         with(binding) {
             ivAddPhoto.setOnClickListener {
                 when (viewModel.state.value.currentState) {
-                    AddNoteViewModel.State.VIEW_NOTE_DETAILS -> viewModel.changeUiStateToEditNote()
-                    AddNoteViewModel.State.ADD_NEW_NOTE, AddNoteViewModel.State.EDIT_NOTE -> {
+                    NoteViewModel.State.VIEW_NOTE_DETAILS -> viewModel.changeUiStateToEditNote()
+                    NoteViewModel.State.ADD_NEW_NOTE, NoteViewModel.State.EDIT_NOTE -> {
                         if (viewModel.state.value.photoUrl.isNullOrEmpty()) {
                             showDialogForPhotoInput()
                         } else {

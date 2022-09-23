@@ -12,7 +12,7 @@ import org.junit.runners.Suite
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
     HomeScreenTest::class,
-    AddNoteScreenTest::class,
+    NoteScreenTest::class,
     NoteDatabaseTest::class,
 )
 class AllTests

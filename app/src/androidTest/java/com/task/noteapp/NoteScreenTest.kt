@@ -11,7 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.task.noteapp.extension.launchFragmentInHiltContainer
 import com.task.noteapp.extension.waitUntilReady
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
-import com.task.noteapp.features.add_note_view_note.add_note.ui.AddNoteFragment
+import com.task.noteapp.features.add_note_view_note.note_details.ui.NoteFragment
 import com.task.noteapp.matcher.DrawableMatcher
 import com.task.noteapp.matcher.ToastMatcher
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -29,7 +29,7 @@ import org.junit.runner.RunWith
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
-class AddNoteScreenTest {
+class NoteScreenTest {
 
     companion object {
         const val EXAMPLE_PHOTO_URL =
@@ -48,7 +48,7 @@ class AddNoteScreenTest {
         val args = bundleOf(
             "noteDetailsType" to NoteDetailsType.ADD
         )
-        launchFragmentInHiltContainer<AddNoteFragment>(args)
+        launchFragmentInHiltContainer<NoteFragment>(args)
         onView(withId(R.id.iv_add_photo)).check(
             matches(
                 allOf(
@@ -64,7 +64,7 @@ class AddNoteScreenTest {
         val args = bundleOf(
             "noteDetailsType" to NoteDetailsType.ADD
         )
-        launchFragmentInHiltContainer<AddNoteFragment>(args)
+        launchFragmentInHiltContainer<NoteFragment>(args)
         onView(withId(R.id.et_title)).check(
             matches(
                 allOf(
@@ -89,7 +89,7 @@ class AddNoteScreenTest {
         val args = bundleOf(
             "noteDetailsType" to NoteDetailsType.ADD
         )
-        launchFragmentInHiltContainer<AddNoteFragment>(args)
+        launchFragmentInHiltContainer<NoteFragment>(args)
 
         onView(allOf(withId(R.id.iv_photo), withParent(withId(R.id.cl_root)))).check(
             matches(
@@ -112,7 +112,7 @@ class AddNoteScreenTest {
         val args = bundleOf(
             "noteDetailsType" to NoteDetailsType.ADD
         )
-        launchFragmentInHiltContainer<AddNoteFragment>(args)
+        launchFragmentInHiltContainer<NoteFragment>(args)
         onView(withId(R.id.btn_save)).perform(click())
         ToastMatcher.onToast((R.string.note_title_not_entered_error))
 

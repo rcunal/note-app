@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.add_note
+package com.task.noteapp.features.add_note_view_note.note_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class AddNoteViewModel @Inject constructor(
+class NoteViewModel @Inject constructor(
     private val repository: NoteRepository,
 ) : ViewModel() {
 

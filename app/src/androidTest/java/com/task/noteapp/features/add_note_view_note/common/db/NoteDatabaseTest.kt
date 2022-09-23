@@ -48,7 +48,7 @@ class NoteDatabaseTest {
     }
 
     @Test
-    fun writeAndReadNote() = runBlocking {
+    fun insertAndReadNote() = runBlocking {
         val note = Note(
             dbId = 1,
             createDate = Date(),
@@ -62,6 +62,44 @@ class NoteDatabaseTest {
         assertThat(
             "The note that was expected to be saved to the db could not be found.",
             notes.contains(note)
+        )
+    }
+
+    @Test
+    fun insertAndDeleteNote() = runBlocking {
+        val note = Note(
+            dbId = 1,
+            createDate = Date(),
+            modifyDate = null,
+            title = "",
+            content = null,
+            imageUrl = null
+        )
+        noteDao.insertNote(note)
+        noteDao.deleteNote(note)
+        val notes = noteDao.getAllNotes().getData()
+        assertThat(
+            "The note that was expected to be deleted from the db is still existing.",
+            notes.contains(note).not()
+        )
+    }
+
+    @Test
+    fun insertAndClearNotes() = runBlocking {
+        val note = Note(
+            dbId = 1,
+            createDate = Date(),
+            modifyDate = null,
+            title = "",
+            content = null,
+            imageUrl = null
+        )
+        noteDao.insertNote(note)
+        noteDao.clearNotes()
+        val notes = noteDao.getAllNotes().getData()
+        assertThat(
+            "The db is not cleared successfully",
+            notes.isEmpty()
         )
     }
 
@@ -85,5 +123,4 @@ class NoteDatabaseTest {
         job.cancel()
         return data
     }
-
 }

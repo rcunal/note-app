@@ -34,9 +34,9 @@
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.task.noteapp.features.add_note_view_note.add_note.ui.AddNoteFragment"
+        android:name="com.task.noteapp.features.add_note_view_note.note_details.ui.NoteFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note">
+        tools:layout="@layout/fragment_note">
 
         <argument
             android:name="noteDetailsType"
