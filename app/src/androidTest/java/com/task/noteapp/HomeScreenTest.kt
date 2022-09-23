@@ -1,20 +1,14 @@
 package com.task.noteapp
 
-import androidx.fragment.app.testing.launchFragment
-import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.task.noteapp.extension.launchFragmentInHiltContainer
-import com.task.noteapp.extension.waitUntilReady
-import com.task.noteapp.features.home.ui.HomeFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -52,9 +46,8 @@ class HomeScreenTest {
     }
 
     @Test
-    fun testHomeFragment() {
-        launchFragmentInHiltContainer<HomeFragment>() {
-            this.
-        }
+    fun testClickFabAndNavigateToAddNoteFragment() {
+        onView(withId(R.id.floating_action_button)).perform(click())
+        onView(allOf(withId(R.id.btn_save), withText(R.string.save))).check(matches(isDisplayed()))
     }
 }

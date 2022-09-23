@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.core.internal.deps.dagger.internal.Preconditions
 import com.task.noteapp.MainActivity
+import com.task.noteapp.R
 
 /**
  * @author: R. Cemre Ünal,
@@ -17,7 +19,7 @@ import com.task.noteapp.MainActivity
 
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
-//    @StyleRes themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
+    @StyleRes themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
     crossinline action: Fragment.() -> Unit = {}
 ) {
     val startActivityIntent = Intent.makeMainActivity(
@@ -25,10 +27,10 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
             ApplicationProvider.getApplicationContext(),
             MainActivity::class.java
         )
-    )/*.putExtra(
+    ).putExtra(
         "androidx.fragment.app.testing.FragmentScenario.EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY",
         themeResId
-    )*/
+    )
 
     ActivityScenario.launch<MainActivity>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
@@ -42,5 +44,6 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
             .commitNow()
 
         fragment.action()
+        return@onActivity
     }
 }

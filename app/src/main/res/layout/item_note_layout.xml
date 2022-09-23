@@ -8,7 +8,7 @@
 
         <variable
             name="noteUiModel"
-            type="com.task.noteapp.features.home.model.NoteUiModel" />
+            type="com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel" />
     </data>
 
     <com.chauthai.swipereveallayout.SwipeRevealLayout
