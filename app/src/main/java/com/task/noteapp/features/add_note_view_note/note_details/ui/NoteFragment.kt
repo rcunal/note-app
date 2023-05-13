@@ -77,7 +77,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
             binding.ivPhoto.visible()
             // Couldn't find any proper drawable so we'll manually change it's color
             binding.ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
-            val primaryColor = requireContext().themeColor(R.attr.colorAccent)
+            val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
             binding.ivAddPhoto.setColorFilter(
                 primaryColor,
                 android.graphics.PorterDuff.Mode.SRC_IN
@@ -99,7 +99,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                 ivPhoto.visible()
                 ivPhoto.loadImage(uiState.photoUrl)
                 binding.ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
-                val primaryColor = requireContext().themeColor(R.attr.colorAccent)
+                val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
                 binding.ivAddPhoto.setColorFilter(
                     primaryColor,
                     android.graphics.PorterDuff.Mode.SRC_IN
