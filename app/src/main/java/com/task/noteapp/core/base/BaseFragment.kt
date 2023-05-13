@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
 /**
  * @author: R. Cemre Ünal,
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<VB : ViewDataBinding>
+abstract class BaseFragment<VB : ViewBinding>
 protected constructor(
     private val inflate: Inflate<VB>
 ) : Fragment() {
@@ -28,11 +28,8 @@ protected constructor(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (_binding == null) {
-            _binding = inflate(inflater, container, false)
-        }
-        _binding?.lifecycleOwner = viewLifecycleOwner
-        return _binding!!.root
+        _binding = inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

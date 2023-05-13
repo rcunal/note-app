@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
  */
 
 fun ImageView.loadImage(url: String?) {
-    url?.let {
+    if (url.isNullOrEmpty()) gone()
+    else {
         Glide.with(context)
             .load(url)
             .fitCenter()

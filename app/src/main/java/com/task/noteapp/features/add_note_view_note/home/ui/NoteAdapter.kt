@@ -4,12 +4,14 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
+import com.task.noteapp.core.extension.loadImage
 import com.task.noteapp.databinding.ItemNoteLayoutBinding
+import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 
 /**
@@ -19,6 +21,7 @@ import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 class NoteAdapter(private val noteClickListener: NoteClickListener) :
     PagingDataAdapter<NoteUiModel, NoteAdapter.ViewHolder>(COMPARATOR) {
 
+    private val handler = Handler(Looper.getMainLooper())
     private val binderHelper = ViewBinderHelper().apply { setOpenOnlyOne(true) }
     private var isDeleteIconRevealed = false
 
@@ -46,29 +49,37 @@ class NoteAdapter(private val noteClickListener: NoteClickListener) :
         }
     }
 
-    inner class ViewHolder(val binding: ItemNoteLayoutBinding) :
+    inner class ViewHolder(private val binding: ItemNoteLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(noteUiModel: NoteUiModel) {
-            with(noteUiModel.note) {
-                binderHelper.bind(binding.swipeReveal, dbId.toString())
-                binding.noteUiModel = noteUiModel
-                binding.cardViewMainContent.setOnClickListener { noteClickListener.onNoteClick(this) }
-                binding.flDelete.setOnClickListener { noteClickListener.onNoteDeleteClick(this) }
-
-                if (!isDeleteIconRevealed) {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.swipeReveal.open(true)
-                    }, 1000)
-
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.swipeReveal.close(true)
-                    }, 2000)
-
-                    isDeleteIconRevealed = true
+            with(binding) {
+                with(noteUiModel) {
+                    binderHelper.bind(swipeReveal, note.dbId.toString())
+                    tvTitle.text = note.title
+                    tvContent.text = note.content
+                    tvCreateDate.text = noteUiModel.formattedCreateDate
+                    ivPhoto.loadImage(noteUiModel.note.imageUrl)
+                    cardViewModifiedTag.isVisible = note.modifyDate != null
+                    binding.cardViewMainContent.setOnClickListener { noteClickListener.onNoteClick(note) }
+                    binding.flDelete.setOnClickListener { noteClickListener.onNoteDeleteClick(note) }
                 }
+                animateIfNeeded()
             }
         }
 
+        private fun animateIfNeeded() {
+            if (!isDeleteIconRevealed) {
+                handler.postDelayed({
+                    binding.swipeReveal.open(true)
+                }, 1000)
+
+                handler.postDelayed({
+                    binding.swipeReveal.close(true)
+                }, 2000)
+
+                isDeleteIconRevealed = true
+            }
+        }
     }
 
     interface NoteClickListener {
