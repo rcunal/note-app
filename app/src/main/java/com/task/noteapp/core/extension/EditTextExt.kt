@@ -14,3 +14,11 @@ fun EditText.showSoftKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
+
+fun EditText.enable() {
+    isEnabled = true
+}
+
+fun EditText.disable() {
+    isEnabled = false
+}

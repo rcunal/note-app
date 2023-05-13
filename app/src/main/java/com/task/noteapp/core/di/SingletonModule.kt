@@ -2,12 +2,13 @@ package com.task.noteapp.core.di
 
 import android.app.Application
 import androidx.room.Room
-import com.task.noteapp.features.add_note_view_note.common.db.NoteDatabase
 import com.task.noteapp.core.utils.Constant.NOTE_DATABASE_NAME
+import com.task.noteapp.features.add_note_view_note.common.db.NoteDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
@@ -18,21 +19,18 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object SingletonModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application) : NoteDatabase {
+    fun provideNoteDatabase(app: Application): NoteDatabase {
         return Room.databaseBuilder(
             app,
             NoteDatabase::class.java,
             NOTE_DATABASE_NAME
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
-    @Provides
-    @Singleton
-    fun provideDispatcher(): Dispatchers {
-        return Dispatchers
-    }
+    @[Provides Singleton IoDispatcher]
+    fun provideDispatcher(): CoroutineDispatcher = Dispatchers.IO
 }

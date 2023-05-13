@@ -48,17 +48,11 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private fun onViewNoteDetailsState(uiState: NoteViewModel.UiState) {
         with(binding) {
-            etTitle.isEnabled = false
-            etContent.isEnabled = false
+            etTitle.disable()
+            etContent.disable()
             etTitle.setText(uiState.note?.title)
             etContent.setText(uiState.note?.content)
-
-            if (uiState.photoUrl.isNullOrEmpty()) {
-                ivPhoto.gone()
-            } else {
-                ivPhoto.visible()
-                ivPhoto.loadImage(uiState.photoUrl)
-            }
+            ivPhoto.loadImage(uiState.photoUrl)
             ivInfo.visible()
             btnSave.gone()
             ivAddPhoto.setImageResource(R.drawable.ic_edit)
@@ -67,14 +61,12 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
     }
 
     private fun onAddNewNoteState(photoUrl: String?) {
-
         if (photoUrl.isNullOrEmpty()) {
             binding.ivPhoto.gone()
             binding.ivPhoto.setImageDrawable(null)
             binding.ivAddPhoto.setImageResource(R.drawable.ic_add_photo)
         } else {
             binding.ivPhoto.loadImage(photoUrl)
-            binding.ivPhoto.visible()
             // Couldn't find any proper drawable so we'll manually change it's color
             binding.ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
             val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
@@ -87,20 +79,20 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private fun onEditNoteState(uiState: NoteViewModel.UiState) {
         with(binding) {
-            etTitle.isEnabled = true
-            etContent.isEnabled = true
+            etTitle.enable()
+            etContent.enable()
             ivInfo.gone()
             btnSave.visible()
 
             if (uiState.photoUrl.isNullOrEmpty()) {
                 ivPhoto.gone()
-                binding.ivAddPhoto.setImageResource(R.drawable.ic_add_photo)
+                ivAddPhoto.setImageResource(R.drawable.ic_add_photo)
             } else {
                 ivPhoto.visible()
                 ivPhoto.loadImage(uiState.photoUrl)
-                binding.ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
+                ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
                 val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
-                binding.ivAddPhoto.setColorFilter(
+                ivAddPhoto.setColorFilter(
                     primaryColor,
                     android.graphics.PorterDuff.Mode.SRC_IN
                 )
