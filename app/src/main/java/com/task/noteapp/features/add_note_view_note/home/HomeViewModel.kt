@@ -6,8 +6,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.task.noteapp.features.add_note_view_note.common.domain.NoteRepository
 import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
+import com.task.noteapp.features.add_note_view_note.common.domain.usecase.DeleteNoteUseCase
+import com.task.noteapp.features.add_note_view_note.common.domain.usecase.GetNotesUseCase
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteUiModels
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,10 +24,13 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val getNotesUseCase: GetNotesUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase
+) : ViewModel() {
 
     val state = Pager(config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-        pagingSourceFactory = { repository.getNotes() }
+        pagingSourceFactory = { getNotesUseCase.execute() }
     )
         .flow
         .cachedIn(viewModelScope).map { notes ->
@@ -40,7 +44,7 @@ class HomeViewModel @Inject constructor(private val repository: NoteRepository) 
 
     fun deleteNote(note: Note) {
         viewModelScope.launch {
-            repository.deleteNote(note)
+            deleteNoteUseCase.execute(note)
         }
     }
 

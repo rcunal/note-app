@@ -57,7 +57,7 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.insertNote(note)
+        noteDao.upsertNote(note)
         val notes = noteDao.getAllNotes().getData()
         assertThat(
             "The note that was expected to be saved to the db could not be found.",
@@ -75,7 +75,7 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.insertNote(note)
+        noteDao.upsertNote(note)
         noteDao.deleteNote(note)
         val notes = noteDao.getAllNotes().getData()
         assertThat(
@@ -94,7 +94,7 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.insertNote(note)
+        noteDao.upsertNote(note)
         noteDao.clearNotes()
         val notes = noteDao.getAllNotes().getData()
         assertThat(

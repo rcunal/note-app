@@ -12,8 +12,8 @@ import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 @Dao
 interface NoteDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(note: Note)
+    @Upsert
+    suspend fun upsertNote(note: Note)
 
     @Query("DELETE FROM note")
     suspend fun clearNotes()

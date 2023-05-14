@@ -1,9 +1,9 @@
-package com.task.noteapp.features.add_note_view_note.common.data
+package com.task.noteapp.features.add_note_view_note.common.data.repository
 
 import androidx.paging.PagingSource
 import com.task.noteapp.core.di.IoDispatcher
 import com.task.noteapp.features.add_note_view_note.common.db.NoteDatabase
-import com.task.noteapp.features.add_note_view_note.common.domain.NoteRepository
+import com.task.noteapp.features.add_note_view_note.common.domain.repository.NoteRepository
 import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -20,9 +20,9 @@ class NoteRepositoryImpl @Inject constructor(
 
     private val dao = db.noteDao
 
-    override suspend fun addNote(note: Note) {
+    override suspend fun upsertNote(note: Note) {
         withContext(dispatcher) {
-            dao.insertNote(note)
+            dao.upsertNote(note)
         }
     }
 

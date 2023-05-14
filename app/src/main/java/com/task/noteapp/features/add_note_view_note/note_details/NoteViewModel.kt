@@ -3,8 +3,8 @@ package com.task.noteapp.features.add_note_view_note.note_details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
-import com.task.noteapp.features.add_note_view_note.common.domain.NoteRepository
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
+import com.task.noteapp.features.add_note_view_note.common.domain.usecase.SaveNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 
 /**
@@ -22,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(
-    private val repository: NoteRepository,
+    private val saveNoteUseCase: SaveNoteUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
@@ -57,30 +58,26 @@ class NoteViewModel @Inject constructor(
         title: String,
         content: String? = null,
     ) {
-
         viewModelScope.launch {
-            val currentDate = Calendar.getInstance().time
-            val noteId = state.value.note?.dbId ?: 0
-            var createDate: Date = currentDate
-            var modifyDate: Date? = null
+            state.value.run {
+                var createDate: Date? = Calendar.getInstance().time
+                var isEdited = false
+                if (currentState == State.EDIT_NOTE) {
+                    createDate = note?.createDate
+                    isEdited = true
 
-            when (state.value.currentState) {
-                State.EDIT_NOTE -> {
-                    createDate = state.value.note?.createDate!!
-                    modifyDate = currentDate
                 }
-                else -> {}
-            }
-            repository.addNote(
-                Note(
-                    dbId = noteId,
-                    title = title,
-                    content = content,
-                    imageUrl = state.value.photoUrl,
-                    createDate = createDate,
-                    modifyDate = modifyDate
+                saveNoteUseCase.execute(
+                    SaveNoteUseCase.SaveNoteParams(
+                        noteId = note?.dbId,
+                        isEdited = isEdited,
+                        createDate = createDate,
+                        title = title,
+                        content = content,
+                        imageUrl = photoUrl
+                    )
                 )
-            )
+            }
             _event.send(Event.NoteAddedSuccessfully)
         }
     }
