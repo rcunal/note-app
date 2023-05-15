@@ -2,13 +2,12 @@ package com.task.noteapp.features.add_note_view_note.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
+import com.task.noteapp.core.utils.DEFAULT_STOP_TIMEOUT
 import com.task.noteapp.features.add_note_view_note.common.domain.usecase.DeleteNoteUseCase
 import com.task.noteapp.features.add_note_view_note.common.domain.usecase.GetNotesUseCase
+import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteDomainModel
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteUiModels
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +17,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+
 /**
  * @author: R. Cemre Ünal,
  * created on 9/22/2022
@@ -25,26 +26,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getNotesUseCase: GetNotesUseCase,
+    getNotesUseCase: GetNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase
 ) : ViewModel() {
 
-    val state = Pager(config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-        pagingSourceFactory = { getNotesUseCase.execute() }
-    )
-        .flow
-        .cachedIn(viewModelScope).map { notes ->
+    val state = getNotesUseCase.execute()
+        .cachedIn(viewModelScope)
+        .map { notes ->
             UiState(notes = notes.toNoteUiModels())
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
+            started = SharingStarted.WhileSubscribed(
+                stopTimeoutMillis = SharingStarted.DEFAULT_STOP_TIMEOUT
+            ),
             initialValue = UiState()
         )
 
-    fun deleteNote(note: Note) {
+    fun deleteNote(noteUiModel: NoteUiModel) {
         viewModelScope.launch {
-            deleteNoteUseCase.execute(note)
+            deleteNoteUseCase.execute(noteUiModel.toNoteDomainModel())
         }
     }
 

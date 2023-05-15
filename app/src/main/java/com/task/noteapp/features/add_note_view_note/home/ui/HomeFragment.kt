@@ -4,11 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.task.noteapp.core.base.BaseFragment
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import com.task.noteapp.core.extension.collectLatestFlow
 import com.task.noteapp.databinding.FragmentHomeBinding
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
 import com.task.noteapp.features.add_note_view_note.home.HomeViewModel
+import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,17 +23,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel by viewModels<HomeViewModel>()
 
     private val noteClickListener = object : NoteAdapter.NoteClickListener {
-        override fun onNoteClick(note: Note) {
+        override fun onNoteClick(noteUiModel: NoteUiModel) {
             findNavController().navigate(
                 HomeFragmentDirections.actionHomeFragmentToAddNoteFragment(
                     NoteDetailsType.VIEW,
-                    note
+                    noteUiModel
                 )
             )
         }
 
-        override fun onNoteDeleteClick(note: Note) {
-            viewModel.deleteNote(note)
+        override fun onNoteDeleteClick(noteUiModel: NoteUiModel) {
+            viewModel.deleteNote(noteUiModel)
         }
     }
 

@@ -50,8 +50,8 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
         with(binding) {
             etTitle.disable()
             etContent.disable()
-            etTitle.setText(uiState.note?.title)
-            etContent.setText(uiState.note?.content)
+            etTitle.setText(uiState.noteUiModel?.title)
+            etContent.setText(uiState.noteUiModel?.content)
             ivPhoto.loadImage(uiState.photoUrl)
             ivInfo.visible()
             btnSave.gone()
@@ -161,7 +161,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
             }
 
             ivInfo.setOnClickListener {
-                val note = viewModel.state.value.note
+                val note = viewModel.state.value.noteUiModel
                 val dialogBinding =
                     DialogNoteInfoLayoutBinding.inflate(LayoutInflater.from(requireContext()))
                 dialogBinding.tvCreatedDateInfo.text =

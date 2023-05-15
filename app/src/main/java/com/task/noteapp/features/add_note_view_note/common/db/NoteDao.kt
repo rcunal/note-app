@@ -2,7 +2,6 @@ package com.task.noteapp.features.add_note_view_note.common.db
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 
 /**
  * @author: R. Cemre Ünal,
@@ -13,24 +12,24 @@ import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 interface NoteDao {
 
     @Upsert
-    suspend fun upsertNote(note: Note)
+    suspend fun upsertNote(noteEntity: NoteEntity)
 
-    @Query("DELETE FROM note")
+    @Query("DELETE FROM noteentity")
     suspend fun clearNotes()
 
     @Delete
-    suspend fun deleteNote(model: Note)
+    suspend fun deleteNote(model: NoteEntity)
 
     @Query(
         """
         SELECT *
-        FROM note
+        FROM noteentity
         WHERE LOWER(content) LIKE '%' || LOWER(:query) || '%' OR 
             LOWER(title) LIKE '%' || LOWER(:query)
         """
     )
-    fun searchNote(query: String): PagingSource<Int, Note>
+    fun searchNote(query: String): PagingSource<Int, NoteEntity>
 
-    @Query("SELECT * FROM note")
-    fun getAllNotes(): PagingSource<Int, Note>
+    @Query("SELECT * FROM noteentity")
+    fun getAllNotes(): PagingSource<Int, NoteEntity>
 }

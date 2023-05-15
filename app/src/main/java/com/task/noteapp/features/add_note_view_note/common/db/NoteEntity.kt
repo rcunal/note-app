@@ -1,19 +1,16 @@
-package com.task.noteapp.features.add_note_view_note.common.domain.model
+package com.task.noteapp.features.add_note_view_note.common.db
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
-import java.util.*
+import java.util.Date
 
 /**
  * @author: R. Cemre Ünal,
  * created on 9/21/2022
  */
 
-@Parcelize
 @Entity
-data class Note(
+data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val dbId: Int = 0,
     val createDate: Date,
@@ -21,4 +18,4 @@ data class Note(
     val title: String,
     val content: String? = null,
     val imageUrl: String? = null,
-) : Parcelable
+)

@@ -6,7 +6,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import dagger.hilt.android.testing.HiltAndroidTest
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,7 +48,7 @@ class NoteDatabaseTest {
 
     @Test
     fun insertAndReadNote() = runBlocking {
-        val note = Note(
+        val noteEntity = NoteEntity(
             dbId = 1,
             createDate = Date(),
             modifyDate = null,
@@ -57,17 +56,17 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.upsertNote(note)
+        noteDao.upsertNote(noteEntity)
         val notes = noteDao.getAllNotes().getData()
         assertThat(
             "The note that was expected to be saved to the db could not be found.",
-            notes.contains(note)
+            notes.contains(noteEntity)
         )
     }
 
     @Test
     fun insertAndDeleteNote() = runBlocking {
-        val note = Note(
+        val noteEntity = NoteEntity(
             dbId = 1,
             createDate = Date(),
             modifyDate = null,
@@ -75,18 +74,18 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.upsertNote(note)
-        noteDao.deleteNote(note)
+        noteDao.upsertNote(noteEntity)
+        noteDao.deleteNote(noteEntity)
         val notes = noteDao.getAllNotes().getData()
         assertThat(
             "The note that was expected to be deleted from the db is still existing.",
-            notes.contains(note).not()
+            notes.contains(noteEntity).not()
         )
     }
 
     @Test
     fun insertAndClearNotes() = runBlocking {
-        val note = Note(
+        val noteEntity = NoteEntity(
             dbId = 1,
             createDate = Date(),
             modifyDate = null,
@@ -94,7 +93,7 @@ class NoteDatabaseTest {
             content = null,
             imageUrl = null
         )
-        noteDao.upsertNote(note)
+        noteDao.upsertNote(noteEntity)
         noteDao.clearNotes()
         val notes = noteDao.getAllNotes().getData()
         assertThat(

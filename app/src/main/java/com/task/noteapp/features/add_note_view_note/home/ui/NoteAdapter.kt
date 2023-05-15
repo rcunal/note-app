@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import com.task.noteapp.core.extension.loadImage
 import com.task.noteapp.databinding.ItemNoteLayoutBinding
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 
 /**
@@ -40,7 +39,7 @@ class NoteAdapter(private val noteClickListener: NoteClickListener) :
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<NoteUiModel>() {
             override fun areItemsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
-                return oldItem.note.dbId == newItem.note.dbId
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: NoteUiModel, newItem: NoteUiModel): Boolean {
@@ -54,14 +53,22 @@ class NoteAdapter(private val noteClickListener: NoteClickListener) :
         fun bind(noteUiModel: NoteUiModel) {
             with(binding) {
                 with(noteUiModel) {
-                    binderHelper.bind(swipeReveal, note.dbId.toString())
-                    tvTitle.text = note.title
-                    tvContent.text = note.content
+                    binderHelper.bind(swipeReveal, id.toString())
+                    tvTitle.text = title
+                    tvContent.text = content
                     tvCreateDate.text = noteUiModel.formattedCreateDate
-                    ivPhoto.loadImage(noteUiModel.note.imageUrl)
-                    cardViewModifiedTag.isVisible = note.modifyDate != null
-                    binding.cardViewMainContent.setOnClickListener { noteClickListener.onNoteClick(note) }
-                    binding.flDelete.setOnClickListener { noteClickListener.onNoteDeleteClick(note) }
+                    ivPhoto.loadImage(noteUiModel.imageUrl)
+                    cardViewModifiedTag.isVisible = modifyDate != null
+                    binding.cardViewMainContent.setOnClickListener {
+                        noteClickListener.onNoteClick(
+                            noteUiModel
+                        )
+                    }
+                    binding.flDelete.setOnClickListener {
+                        noteClickListener.onNoteDeleteClick(
+                            noteUiModel
+                        )
+                    }
                 }
                 animateIfNeeded()
             }
@@ -83,7 +90,7 @@ class NoteAdapter(private val noteClickListener: NoteClickListener) :
     }
 
     interface NoteClickListener {
-        fun onNoteClick(note: Note)
-        fun onNoteDeleteClick(note: Note)
+        fun onNoteClick(noteUiModel: NoteUiModel)
+        fun onNoteDeleteClick(noteUiModel: NoteUiModel)
     }
 }

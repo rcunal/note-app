@@ -27,7 +27,7 @@
             <argument
                 android:name="note"
                 app:nullable="true"
-                app:argType="com.task.noteapp.features.add_note_view_note.common.domain.model.Note" />
+                app:argType="com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel" />
 
 
         </action>
@@ -47,7 +47,7 @@
             android:name="note"
             app:nullable="true"
             android:defaultValue="@null"
-            app:argType="com.task.noteapp.features.add_note_view_note.common.domain.model.Note" />
+            app:argType="com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel" />
 
     </fragment>
 </navigation>

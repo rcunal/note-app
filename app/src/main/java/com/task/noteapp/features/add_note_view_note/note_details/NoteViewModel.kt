@@ -2,9 +2,9 @@ package com.task.noteapp.features.add_note_view_note.note_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.task.noteapp.features.add_note_view_note.common.domain.model.Note
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
 import com.task.noteapp.features.add_note_view_note.common.domain.usecase.SaveNoteUseCase
+import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,13 +32,17 @@ class NoteViewModel @Inject constructor(
     private val _event = Channel<Event>(Channel.UNLIMITED)
     val event = _event.receiveAsFlow()
 
-    fun setUiState(noteDetailsType: NoteDetailsType, note: Note?) {
+    fun setUiState(noteDetailsType: NoteDetailsType, noteUiModel: NoteUiModel?) {
         val currentState = when (noteDetailsType) {
             NoteDetailsType.ADD -> State.ADD_NEW_NOTE
             NoteDetailsType.VIEW -> State.VIEW_NOTE_DETAILS
         }
         _state.update { oldState ->
-            oldState.copy(currentState = currentState, photoUrl = note?.imageUrl, note = note)
+            oldState.copy(
+                currentState = currentState,
+                photoUrl = noteUiModel?.imageUrl,
+                noteUiModel = noteUiModel
+            )
         }
     }
 
@@ -63,13 +67,13 @@ class NoteViewModel @Inject constructor(
                 var createDate: Date? = Calendar.getInstance().time
                 var isEdited = false
                 if (currentState == State.EDIT_NOTE) {
-                    createDate = note?.createDate
+                    createDate = noteUiModel?.createDate
                     isEdited = true
 
                 }
                 saveNoteUseCase.execute(
                     SaveNoteUseCase.SaveNoteParams(
-                        noteId = note?.dbId,
+                        noteId = noteUiModel?.id,
                         isEdited = isEdited,
                         createDate = createDate,
                         title = title,
@@ -96,6 +100,6 @@ class NoteViewModel @Inject constructor(
     data class UiState(
         val currentState: State = State.INITIAL,
         val photoUrl: String? = null,
-        val note: Note? = null
+        val noteUiModel: NoteUiModel? = null
     )
 }
