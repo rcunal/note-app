@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.common.db
+package com.noteapp.datasource.local.db
 
 import androidx.room.TypeConverter
 import java.util.*
@@ -16,6 +16,6 @@ class Converters {
 
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
-        return date?.time?.toLong()
+        return date?.time
     }
 }

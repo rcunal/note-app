@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.common.db
+package com.noteapp.datasource.local.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

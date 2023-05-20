@@ -6,6 +6,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import dagger.hilt.android.testing.HiltAndroidTest
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.noteapp.datasource.local.db.NoteDao
+import com.noteapp.datasource.local.db.NoteDatabase
+import com.noteapp.datasource.local.db.NoteEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
