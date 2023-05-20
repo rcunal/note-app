@@ -1,6 +1,5 @@
-package com.task.noteapp.core.di
+package com.noteapp.note_details.data
 
-import com.noteapp.note_details.data.NoteDetailsRepositoryImpl
 import com.noteapp.note_details.data.usecase.DeleteNoteUseCaseImpl
 import com.noteapp.note_details.data.usecase.SaveNoteUseCaseImpl
 import com.noteapp.note_details.domain.NoteDetailsRepository
@@ -12,14 +11,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-/**
- * @author: R. Cemre Ünal,
- * created on 9/21/2022
- */
-
 @Module
 @InstallIn(SingletonComponent::class)
-interface AbstractSingletonModule {
+interface SingletonModule {
     @Binds
     @Singleton
     fun bindRepository(noteDetailsRepositoryImpl: NoteDetailsRepositoryImpl): NoteDetailsRepository
