@@ -1,6 +1,6 @@
 package com.task.noteapp.features.add_note_view_note.common.data.mapper
 
-import com.task.noteapp.features.add_note_view_note.common.db.NoteEntity
+import com.noteapp.datasource.local.db.NoteEntity
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDomainModel
 
 fun NoteDomainModel.toNoteEntity() = NoteEntity(

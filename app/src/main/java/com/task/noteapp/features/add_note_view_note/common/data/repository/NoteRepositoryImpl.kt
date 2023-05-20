@@ -1,15 +1,11 @@
 package com.task.noteapp.features.add_note_view_note.common.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import com.task.noteapp.core.di.IoDispatcher
+import com.noteapp.core.IoDispatcher
+import com.noteapp.datasource.local.db.NoteDao
 import com.task.noteapp.features.add_note_view_note.common.data.mapper.toNoteEntity
-import com.task.noteapp.features.add_note_view_note.common.db.NoteDatabase
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDomainModel
 import com.task.noteapp.features.add_note_view_note.common.domain.repository.NoteRepository
-import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteDomainModels
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -19,18 +15,8 @@ import javax.inject.Inject
  */
 class NoteRepositoryImpl @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
-    db: NoteDatabase
+    private val dao: NoteDao
 ) : NoteRepository {
-
-    private val dao = db.noteDao
-
-    override val notes =
-        Pager(config = PagingConfig(
-            pageSize = NOTES_PAGING_SIZE,
-            enablePlaceholders = false
-        ),
-            pagingSourceFactory = { dao.getAllNotes() }
-        ).flow.map { it.toNoteDomainModels() }
 
     override suspend fun upsertNote(noteDomainModel: NoteDomainModel) {
         withContext(dispatcher) {
@@ -44,5 +30,3 @@ class NoteRepositoryImpl @Inject constructor(
         }
     }
 }
-
-private const val NOTES_PAGING_SIZE = 20

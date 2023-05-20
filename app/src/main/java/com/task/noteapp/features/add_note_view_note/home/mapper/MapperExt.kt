@@ -4,8 +4,9 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.task.noteapp.core.extension.toString
 import com.task.noteapp.core.utils.Constant.DATE_FORMAT
-import com.task.noteapp.features.add_note_view_note.common.db.NoteEntity
+import com.noteapp.home.domain.NoteDomainModel as HomeNoteDomainModel
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDomainModel
+
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 
 /**
@@ -13,7 +14,7 @@ import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
  * created on 9/22/2022
  */
 
-fun PagingData<NoteDomainModel>.toNoteUiModels() =
+fun PagingData<HomeNoteDomainModel>.toNoteUiModels() =
     map { note ->
         with(note) {
             NoteUiModel(
@@ -36,17 +37,3 @@ fun NoteUiModel.toNoteDomainModel() = NoteDomainModel(
     content = content,
     imageUrl = imageUrl
 )
-
-fun PagingData<NoteEntity>.toNoteDomainModels() =
-    map { note ->
-        with(note) {
-            NoteDomainModel(
-                id = dbId,
-                createDate = createDate,
-                modifyDate = modifyDate,
-                title = title,
-                content = content,
-                imageUrl = imageUrl
-            )
-        }
-    }

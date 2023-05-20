@@ -29,7 +29,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -50,6 +50,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":core:datasource:local"))
+    implementation(project(":features:home:domain"))
+    implementation(project(":features:home:data"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
     implementation("androidx.core:core-ktx:1.10.1")
@@ -98,7 +102,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:${Dependencies.fragmentVersion}")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     //swipe layout
     implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")

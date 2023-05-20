@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.task.noteapp.core.utils.DEFAULT_STOP_TIMEOUT
 import com.task.noteapp.features.add_note_view_note.common.domain.usecase.DeleteNoteUseCase
-import com.task.noteapp.features.add_note_view_note.common.domain.usecase.GetNotesUseCase
+import com.noteapp.home.domain.GetNotesUseCase
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteDomainModel
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteUiModels
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
