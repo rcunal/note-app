@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
@@ -52,6 +51,7 @@ android {
 dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:ui"))
+    implementation(project(":core:domain"))
     implementation(project(":core:datasource:local"))
 
     implementation(project(":features:home:ui"))
@@ -73,11 +73,6 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-
-    // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")
-    kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Dependencies.hiltVersion}")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")

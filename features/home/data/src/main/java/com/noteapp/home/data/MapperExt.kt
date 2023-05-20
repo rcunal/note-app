@@ -18,3 +18,12 @@ fun PagingData<NoteEntity>.toNoteDomainModels() =
             )
         }
     }
+
+fun NoteDomainModel.toNoteEntity() = NoteEntity(
+    dbId = id,
+    createDate = createDate,
+    modifyDate = modifyDate,
+    title = title,
+    content = content,
+    imageUrl = imageUrl
+)

@@ -1,14 +1,12 @@
-package com.task.noteapp.features.add_note_view_note.home
+package com.noteapp.home.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.task.noteapp.core.utils.DEFAULT_STOP_TIMEOUT
-import com.noteapp.note_details.domain.usecase.DeleteNoteUseCase
-import com.noteapp.home.domain.GetNotesUseCase
-import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteDomainModel
-import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteUiModels
+import com.noteapp.core.ui.extension.DEFAULT_STOP_TIMEOUT
+import com.noteapp.home.domain.usecase.DeleteNoteUseCase
+import com.noteapp.home.domain.usecase.GetNotesUseCase
 import com.noteapp.home.ui.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,13 +14,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-
-
-/**
- * @author: R. Cemre Ünal,
- * created on 9/22/2022
- */
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

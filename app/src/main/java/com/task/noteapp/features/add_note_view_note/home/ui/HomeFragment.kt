@@ -8,15 +8,9 @@ import com.noteapp.home.ui.NoteAdapter
 import com.noteapp.core.ui.extension.collectLatestFlow
 import com.task.noteapp.databinding.FragmentHomeBinding
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
-import com.task.noteapp.features.add_note_view_note.home.HomeViewModel
+import com.noteapp.home.ui.HomeViewModel
 import com.noteapp.home.ui.model.NoteUiModel
 import dagger.hilt.android.AndroidEntryPoint
-
-
-/**
- * @author: R. Cemre Ünal,
- * created on 9/21/2022
- */
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
