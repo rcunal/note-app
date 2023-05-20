@@ -18,10 +18,4 @@ class NoteDetailsRepositoryImpl @Inject constructor(
             dao.upsertNote(noteDetailsDomainModel.toNoteEntity())
         }
     }
-
-    override suspend fun deleteNote(noteDetailsDomainModel: NoteDetailsDomainModel) {
-        withContext(dispatcher) {
-            dao.deleteNote(noteDetailsDomainModel.toNoteEntity())
-        }
-    }
 }

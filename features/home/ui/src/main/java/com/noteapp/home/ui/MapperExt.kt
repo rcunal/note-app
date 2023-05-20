@@ -1,14 +1,13 @@
-package com.task.noteapp.features.add_note_view_note.home.mapper
+package com.noteapp.home.ui
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.task.noteapp.core.extension.toString
-import com.task.noteapp.core.utils.Constant.DATE_FORMAT
-import com.noteapp.home.domain.NoteDomainModel as HomeNoteDomainModel
-import com.noteapp.note_details.domain.NoteDetailsDomainModel
+import com.noteapp.core.domain.toString
+import com.noteapp.home.domain.Constants.DATE_FORMAT
+import com.noteapp.home.domain.NoteDomainModel
 import com.noteapp.home.ui.model.NoteUiModel
 
-fun PagingData<HomeNoteDomainModel>.toNoteUiModels() =
+fun PagingData<NoteDomainModel>.toNoteUiModels() =
     map { note ->
         with(note) {
             NoteUiModel(
@@ -23,7 +22,7 @@ fun PagingData<HomeNoteDomainModel>.toNoteUiModels() =
         }
     }
 
-fun NoteUiModel.toNoteDomainModel() = NoteDetailsDomainModel(
+fun NoteUiModel.toNoteDomainModel() = NoteDomainModel(
     id = id,
     createDate = createDate,
     modifyDate = modifyDate,

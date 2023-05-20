@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
     val notes: Flow<PagingData<NoteDomainModel>>
+    suspend fun deleteNote(noteDomainModel: NoteDomainModel)
 }

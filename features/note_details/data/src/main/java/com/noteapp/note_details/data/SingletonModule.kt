@@ -1,9 +1,7 @@
 package com.noteapp.note_details.data
 
-import com.noteapp.note_details.data.usecase.DeleteNoteUseCaseImpl
 import com.noteapp.note_details.data.usecase.SaveNoteUseCaseImpl
 import com.noteapp.note_details.domain.NoteDetailsRepository
-import com.noteapp.note_details.domain.usecase.DeleteNoteUseCase
 import com.noteapp.note_details.domain.usecase.SaveNoteUseCase
 import dagger.Binds
 import dagger.Module
@@ -20,7 +18,4 @@ interface SingletonModule {
 
     @Binds
     fun bindsSaveNoteUseCase(saveNoteUseCaseImpl: SaveNoteUseCaseImpl): SaveNoteUseCase
-
-    @Binds
-    fun bindsDeleteNoteUseCase(deleteNoteUseCaseImpl: DeleteNoteUseCaseImpl): DeleteNoteUseCase
 }

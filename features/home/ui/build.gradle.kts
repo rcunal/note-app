@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:ui"))
+    implementation(project(":core:domain"))
     implementation(project(":core:datasource:local"))
     implementation(project(":features:home:domain"))
 

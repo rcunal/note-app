@@ -6,5 +6,4 @@ package com.noteapp.note_details.domain
  */
 interface NoteDetailsRepository {
     suspend fun upsertNote(noteDetailsDomainModel: NoteDetailsDomainModel)
-    suspend fun deleteNote(noteDetailsDomainModel: NoteDetailsDomainModel)
 }

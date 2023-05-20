@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.noteapp.core.domain.toString
 import com.task.noteapp.R
 import com.noteapp.core.ui.R as CoreR
 import com.noteapp.core.ui.BaseFragment
@@ -17,7 +18,6 @@ import com.noteapp.core.ui.extension.showSoftKeyboard
 import com.noteapp.core.ui.extension.showToast
 import com.noteapp.core.ui.extension.themeColor
 import com.noteapp.core.ui.extension.visible
-import com.task.noteapp.core.extension.*
 import com.task.noteapp.core.utils.Constant
 import com.task.noteapp.databinding.DialogAddPhotoBinding
 import com.task.noteapp.databinding.DialogNoteInfoLayoutBinding

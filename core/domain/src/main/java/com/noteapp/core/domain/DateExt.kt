@@ -1,4 +1,4 @@
-package com.task.noteapp.core.extension
+package com.noteapp.core.domain
 
 import java.text.SimpleDateFormat
 import java.util.*
