@@ -1,10 +1,10 @@
 package com.task.noteapp.features.add_note_view_note.common.data.repository
 
-import com.noteapp.core.IoDispatcher
+import com.noteapp.core.di.IoDispatcher
 import com.noteapp.datasource.local.db.NoteDao
-import com.task.noteapp.features.add_note_view_note.common.data.mapper.toNoteEntity
 import com.noteapp.note_details.domain.NoteDetailsDomainModel
 import com.noteapp.note_details.domain.NoteDetailsRepository
+import com.task.noteapp.features.add_note_view_note.common.data.mapper.toNoteEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

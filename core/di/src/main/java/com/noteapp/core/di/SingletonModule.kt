@@ -1,4 +1,4 @@
-package com.noteapp.core
+package com.noteapp.core.di
 
 import dagger.Module
 import dagger.Provides

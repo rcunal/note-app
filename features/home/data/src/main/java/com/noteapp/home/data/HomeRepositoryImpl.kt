@@ -2,7 +2,7 @@ package com.noteapp.home.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.noteapp.core.IoDispatcher
+import com.noteapp.core.di.IoDispatcher
 import com.noteapp.datasource.local.db.NoteDao
 import com.noteapp.home.domain.HomeRepository
 import kotlinx.coroutines.CoroutineDispatcher
