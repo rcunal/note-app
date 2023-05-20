@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.noteapp.datasource.local"
+    namespace = "com.noteapp.home.ui"
     compileSdk = 33
 
     defaultConfig {
@@ -35,13 +35,10 @@ android {
 }
 
 dependencies {
-    // Room
-    implementation("androidx.room:room-runtime:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-ktx:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-paging:${Dependencies.roomVersion}")
-    kapt("androidx.room:room-compiler:${Dependencies.roomVersion}")
-
-    // Hilt
+    implementation(project(":core"))
+    implementation(project(":core:datasource:local"))
+    implementation(project(":features:home:domain"))
+    implementation("javax.inject:javax.inject:1")
     implementation("com.google.dagger:hilt-core:${Dependencies.hiltVersion}")
     kapt("com.google.dagger:hilt-compiler:${Dependencies.hiltVersion}")
 }
