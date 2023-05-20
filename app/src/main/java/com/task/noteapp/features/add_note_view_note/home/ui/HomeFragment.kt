@@ -3,7 +3,7 @@ package com.task.noteapp.features.add_note_view_note.home.ui
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.task.noteapp.core.base.BaseFragment
+import com.noteapp.core.ui.BaseFragment
 import com.task.noteapp.core.extension.collectLatestFlow
 import com.task.noteapp.databinding.FragmentHomeBinding
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType

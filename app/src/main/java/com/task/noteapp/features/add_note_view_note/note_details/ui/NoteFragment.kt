@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.task.noteapp.R
-import com.task.noteapp.core.base.BaseFragment
+import com.noteapp.core.ui.BaseFragment
 import com.task.noteapp.core.extension.*
 import com.task.noteapp.core.utils.Constant
 import com.task.noteapp.databinding.DialogAddPhotoBinding

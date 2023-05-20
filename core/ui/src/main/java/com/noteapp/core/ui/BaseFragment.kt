@@ -1,4 +1,4 @@
-package com.task.noteapp.core.base
+package com.noteapp.core.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-
-/**
- * @author: R. Cemre Ünal,
- * created on 9/21/2022
- */
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
