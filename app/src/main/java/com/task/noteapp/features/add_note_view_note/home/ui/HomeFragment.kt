@@ -4,11 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapp.core.ui.BaseFragment
-import com.task.noteapp.core.extension.collectLatestFlow
+import com.noteapp.home.ui.NoteAdapter
+import com.noteapp.core.ui.extension.collectLatestFlow
 import com.task.noteapp.databinding.FragmentHomeBinding
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
 import com.task.noteapp.features.add_note_view_note.home.HomeViewModel
-import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
+import com.noteapp.home.ui.model.NoteUiModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
 import com.noteapp.note_details.domain.usecase.SaveNoteUseCase
-import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
+import com.noteapp.home.ui.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -29,16 +30,22 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
     implementation(project(":core:di"))
+    implementation(project(":core:ui"))
     implementation(project(":core:datasource:local"))
     implementation(project(":features:home:domain"))
-    implementation("javax.inject:javax.inject:1")
-    implementation("com.google.dagger:hilt-core:${Dependencies.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Dependencies.hiltVersion}")
+
+    implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
+    implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")
 }

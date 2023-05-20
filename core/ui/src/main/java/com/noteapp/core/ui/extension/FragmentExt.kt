@@ -1,6 +1,5 @@
-package com.task.noteapp.core.extension
+package com.noteapp.core.ui.extension
 
-import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle

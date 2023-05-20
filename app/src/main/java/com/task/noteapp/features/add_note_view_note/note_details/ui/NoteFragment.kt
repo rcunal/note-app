@@ -6,7 +6,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.task.noteapp.R
+import com.noteapp.core.ui.R as CoreR
 import com.noteapp.core.ui.BaseFragment
+import com.noteapp.core.ui.extension.collectFlow
+import com.noteapp.core.ui.extension.disable
+import com.noteapp.core.ui.extension.enable
+import com.noteapp.core.ui.extension.gone
+import com.noteapp.core.ui.extension.loadImage
+import com.noteapp.core.ui.extension.showSoftKeyboard
+import com.noteapp.core.ui.extension.showToast
+import com.noteapp.core.ui.extension.themeColor
+import com.noteapp.core.ui.extension.visible
 import com.task.noteapp.core.extension.*
 import com.task.noteapp.core.utils.Constant
 import com.task.noteapp.databinding.DialogAddPhotoBinding
@@ -103,7 +113,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private fun showDialogForPhotoInput() {
         val dialogBinding = DialogAddPhotoBinding.inflate(LayoutInflater.from(requireContext()))
-        val dialog = AlertDialog.Builder(requireContext(), R.style.DarkDialog)
+        val dialog = AlertDialog.Builder(requireContext(), CoreR.style.DarkDialog)
             .setTitle(getString(R.string.add_photo))
             .setView(dialogBinding.root)
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
@@ -117,7 +127,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
     private fun showRemovePhotoDialog() {
         val dialog = AlertDialog.Builder(
             requireContext(),
-            R.style.DarkDialog
+            CoreR.style.DarkDialog
         )
             .setTitle(getString(R.string.remove_photo))
             .setPositiveButton(getString(R.string.ok)) { _, _ ->
@@ -166,15 +176,16 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                     DialogNoteInfoLayoutBinding.inflate(LayoutInflater.from(requireContext()))
                 dialogBinding.tvCreatedDateInfo.text =
                     note?.createDate?.toString(Constant.DATE_TIME_FORMAT)
-                if (note?.modifyDate != null) {
+                val modifyDate = note?.modifyDate
+                if (modifyDate != null) {
                     dialogBinding.tvModifiedDateInfo.visible()
                     dialogBinding.tvModifiedDateInfo.text =
-                        note.modifyDate.toString(Constant.DATE_TIME_FORMAT)
+                        modifyDate.toString(Constant.DATE_TIME_FORMAT)
                 } else {
                     dialogBinding.tvModifiedDateTitle.gone()
                     dialogBinding.tvModifiedDateInfo.gone()
                 }
-                val dialog = AlertDialog.Builder(requireContext(), R.style.DarkDialog)
+                val dialog = AlertDialog.Builder(requireContext(), CoreR.style.DarkDialog)
                     .setView(dialogBinding.root).create()
                 dialog.show()
             }

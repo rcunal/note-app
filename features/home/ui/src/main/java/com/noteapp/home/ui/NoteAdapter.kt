@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.home.ui
+package com.noteapp.home.ui
 
 import android.os.Handler
 import android.os.Looper
@@ -9,14 +9,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
-import com.task.noteapp.core.extension.loadImage
-import com.task.noteapp.databinding.ItemNoteLayoutBinding
-import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
+import com.noteapp.core.ui.extension.loadImage
+import com.noteapp.home.ui.databinding.ItemNoteLayoutBinding
+import com.noteapp.home.ui.model.NoteUiModel
 
-/**
- * @author: R. Cemre Ünal,
- * created on 9/22/2022
- */
 class NoteAdapter(private val noteClickListener: NoteClickListener) :
     PagingDataAdapter<NoteUiModel, NoteAdapter.ViewHolder>(COMPARATOR) {
 

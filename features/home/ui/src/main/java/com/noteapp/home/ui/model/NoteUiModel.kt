@@ -1,13 +1,9 @@
-package com.task.noteapp.features.add_note_view_note.home.model
+package com.noteapp.home.ui.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import java.util.Date
 
-/**
- * @author: R. Cemre Ünal,
- * created on 9/22/2022
- */
 @Parcelize
 data class NoteUiModel(
     val id: Int = 0,

@@ -6,7 +6,7 @@ import com.task.noteapp.core.extension.toString
 import com.task.noteapp.core.utils.Constant.DATE_FORMAT
 import com.noteapp.home.domain.NoteDomainModel as HomeNoteDomainModel
 import com.noteapp.note_details.domain.NoteDetailsDomainModel
-import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
+import com.noteapp.home.ui.model.NoteUiModel
 
 fun PagingData<HomeNoteDomainModel>.toNoteUiModels() =
     map { note ->

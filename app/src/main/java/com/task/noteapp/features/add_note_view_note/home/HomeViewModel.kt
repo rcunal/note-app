@@ -9,7 +9,7 @@ import com.noteapp.note_details.domain.usecase.DeleteNoteUseCase
 import com.noteapp.home.domain.GetNotesUseCase
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteDomainModel
 import com.task.noteapp.features.add_note_view_note.home.mapper.toNoteUiModels
-import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
+import com.noteapp.home.ui.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map

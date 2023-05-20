@@ -1,4 +1,4 @@
-package com.task.noteapp.core.extension
+package com.noteapp.core.ui.extension
 
 import android.view.View
 

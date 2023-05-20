@@ -36,9 +36,9 @@ android {
 
 dependencies {
     // Room
-    implementation("androidx.room:room-runtime:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-ktx:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-paging:${Dependencies.roomVersion}")
+    api("androidx.room:room-runtime:${Dependencies.roomVersion}")
+    api("androidx.room:room-ktx:${Dependencies.roomVersion}")
+    api("androidx.room:room-paging:${Dependencies.roomVersion}")
     kapt("androidx.room:room-compiler:${Dependencies.roomVersion}")
 
     // Hilt

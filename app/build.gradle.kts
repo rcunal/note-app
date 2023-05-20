@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:datasource:local"))
 
+    implementation(project(":features:home:ui"))
     implementation(project(":features:home:domain"))
     implementation(project(":features:home:data"))
 
@@ -61,10 +62,7 @@ dependencies {
     implementation(project(":features:note_details:data"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.espresso:espresso-core:${Dependencies.espressoVersion}")
@@ -75,9 +73,6 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-
-    // Glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")
@@ -103,12 +98,12 @@ dependencies {
     // KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Dependencies.ktxVersion}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.ktxVersion}")
-    // Fragment
-    implementation("androidx.fragment:fragment-ktx:${Dependencies.fragmentVersion}")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     //swipe layout
     implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
+
+    implementation("com.github.bumptech.glide:glide:4.15.1") // TODO: will be removed after moving fragments
 }
