@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.common.data.usecase
+package com.noteapp.note_details.data.usecase
 
 import com.noteapp.note_details.domain.NoteDetailsDomainModel
 import com.noteapp.note_details.domain.NoteDetailsRepository

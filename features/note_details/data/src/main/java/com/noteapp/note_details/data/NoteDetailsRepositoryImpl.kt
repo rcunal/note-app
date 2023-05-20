@@ -1,19 +1,14 @@
-package com.task.noteapp.features.add_note_view_note.common.data.repository
+package com.noteapp.note_details.data
 
 import com.noteapp.core.di.IoDispatcher
 import com.noteapp.datasource.local.db.NoteDao
 import com.noteapp.note_details.domain.NoteDetailsDomainModel
 import com.noteapp.note_details.domain.NoteDetailsRepository
-import com.task.noteapp.features.add_note_view_note.common.data.mapper.toNoteEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-/**
- * @author: R. Cemre Ünal,
- * created on 9/22/2022
- */
-class NoteRepositoryImpl @Inject constructor(
+class NoteDetailsRepositoryImpl @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val dao: NoteDao
 ) : NoteDetailsRepository {

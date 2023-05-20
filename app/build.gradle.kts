@@ -57,6 +57,7 @@ dependencies {
     implementation(project(":features:home:data"))
 
     implementation(project(":features:note_details:domain"))
+    implementation(project(":features:note_details:data"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
     implementation("androidx.core:core-ktx:1.10.1")
