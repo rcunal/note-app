@@ -52,8 +52,11 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":core:datasource:local"))
+
     implementation(project(":features:home:domain"))
     implementation(project(":features:home:data"))
+
+    implementation(project(":features:note_details:domain"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
     implementation("androidx.core:core-ktx:1.10.1")

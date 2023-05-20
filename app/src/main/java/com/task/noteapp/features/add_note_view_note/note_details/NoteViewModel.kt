@@ -3,7 +3,7 @@ package com.task.noteapp.features.add_note_view_note.note_details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
-import com.task.noteapp.features.add_note_view_note.common.domain.usecase.SaveNoteUseCase
+import com.noteapp.note_details.domain.usecase.SaveNoteUseCase
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

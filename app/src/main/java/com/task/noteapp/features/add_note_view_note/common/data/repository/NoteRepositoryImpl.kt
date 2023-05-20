@@ -3,8 +3,8 @@ package com.task.noteapp.features.add_note_view_note.common.data.repository
 import com.noteapp.core.IoDispatcher
 import com.noteapp.datasource.local.db.NoteDao
 import com.task.noteapp.features.add_note_view_note.common.data.mapper.toNoteEntity
-import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDomainModel
-import com.task.noteapp.features.add_note_view_note.common.domain.repository.NoteRepository
+import com.noteapp.note_details.domain.NoteDetailsDomainModel
+import com.noteapp.note_details.domain.NoteDetailsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -16,17 +16,17 @@ import javax.inject.Inject
 class NoteRepositoryImpl @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher,
     private val dao: NoteDao
-) : NoteRepository {
+) : NoteDetailsRepository {
 
-    override suspend fun upsertNote(noteDomainModel: NoteDomainModel) {
+    override suspend fun upsertNote(noteDetailsDomainModel: NoteDetailsDomainModel) {
         withContext(dispatcher) {
-            dao.upsertNote(noteDomainModel.toNoteEntity())
+            dao.upsertNote(noteDetailsDomainModel.toNoteEntity())
         }
     }
 
-    override suspend fun deleteNote(noteDomainModel: NoteDomainModel) {
+    override suspend fun deleteNote(noteDetailsDomainModel: NoteDetailsDomainModel) {
         withContext(dispatcher) {
-            dao.deleteNote(noteDomainModel.toNoteEntity())
+            dao.deleteNote(noteDetailsDomainModel.toNoteEntity())
         }
     }
 }

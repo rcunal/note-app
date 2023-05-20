@@ -5,7 +5,7 @@ import androidx.paging.map
 import com.task.noteapp.core.extension.toString
 import com.task.noteapp.core.utils.Constant.DATE_FORMAT
 import com.noteapp.home.domain.NoteDomainModel as HomeNoteDomainModel
-import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDomainModel
+import com.noteapp.note_details.domain.NoteDetailsDomainModel
 
 import com.task.noteapp.features.add_note_view_note.home.model.NoteUiModel
 
@@ -29,7 +29,7 @@ fun PagingData<HomeNoteDomainModel>.toNoteUiModels() =
         }
     }
 
-fun NoteUiModel.toNoteDomainModel() = NoteDomainModel(
+fun NoteUiModel.toNoteDomainModel() = NoteDetailsDomainModel(
     id = id,
     createDate = createDate,
     modifyDate = modifyDate,

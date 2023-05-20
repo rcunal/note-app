@@ -1,4 +1,4 @@
-package com.task.noteapp.features.add_note_view_note.common.domain.usecase
+package com.noteapp.note_details.domain.usecase
 
 import java.util.Date
 

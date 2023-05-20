@@ -1,8 +1,8 @@
-package com.task.noteapp.features.add_note_view_note.common.domain.model
+package com.noteapp.note_details.domain
 
 import java.util.Date
 
-data class NoteDomainModel(
+data class NoteDetailsDomainModel(
     val id: Int = 0,
     val createDate: Date,
     val modifyDate: Date? = null,

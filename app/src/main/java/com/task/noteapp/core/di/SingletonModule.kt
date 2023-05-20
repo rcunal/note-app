@@ -3,9 +3,9 @@ package com.task.noteapp.core.di
 import com.task.noteapp.features.add_note_view_note.common.data.repository.NoteRepositoryImpl
 import com.task.noteapp.features.add_note_view_note.common.data.usecase.DeleteNoteUseCaseImpl
 import com.task.noteapp.features.add_note_view_note.common.data.usecase.SaveNoteUseCaseImpl
-import com.task.noteapp.features.add_note_view_note.common.domain.repository.NoteRepository
-import com.task.noteapp.features.add_note_view_note.common.domain.usecase.DeleteNoteUseCase
-import com.task.noteapp.features.add_note_view_note.common.domain.usecase.SaveNoteUseCase
+import com.noteapp.note_details.domain.NoteDetailsRepository
+import com.noteapp.note_details.domain.usecase.DeleteNoteUseCase
+import com.noteapp.note_details.domain.usecase.SaveNoteUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 interface AbstractSingletonModule {
     @Binds
     @Singleton
-    fun bindRepository(noteRepositoryImpl: NoteRepositoryImpl): NoteRepository
+    fun bindRepository(noteRepositoryImpl: NoteRepositoryImpl): NoteDetailsRepository
 
     @Binds
     fun bindsSaveNoteUseCase(saveNoteUseCaseImpl: SaveNoteUseCaseImpl): SaveNoteUseCase
