@@ -7,11 +7,11 @@ import android.view.View
  * created on 9/22/2022
  */
 
-fun View.gone() {
+fun View.hide() {
     this.visibility = View.GONE
 }
 
-fun View.visible() {
+fun View.show() {
     this.visibility = View.VISIBLE
 }
 

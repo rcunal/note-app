@@ -6,6 +6,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class NoteDetailsParcelableArguments(
-    val noteUiModel: NoteUiModel?,
     val noteDetailsType: NoteDetailsType,
+    val noteUiModel: NoteUiModel? = null,
 ) : Parcelable

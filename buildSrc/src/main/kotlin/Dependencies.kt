@@ -7,5 +7,5 @@ object Dependencies {
     const val roomVersion = "2.5.1"
     const val ktxVersion = "2.6.1"
     const val espressoVersion = "3.5.1"
-    const val fragmentVersion = "1.5.7"
+    const val fragmentVersion = "1.6.0-rc01"
 }

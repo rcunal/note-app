@@ -8,9 +8,11 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.noteapp.note_details.shared.NoteDetailsCommunicator
 import com.task.noteapp.extension.launchFragmentInHiltContainer
 import com.task.noteapp.extension.waitUntilReady
 import com.noteapp.note_details.shared.model.NoteDetailsType
+import com.noteapp.note_details.ui.model.NoteDetailsParcelableArguments
 import com.task.noteapp.matcher.DrawableMatcher
 import com.task.noteapp.matcher.ToastMatcher
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -36,28 +38,24 @@ class NoteScreenTest {
     @get:Rule(order = 1)
     var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
+    private val args = bundleOf(
+        NoteDetailsCommunicator.noteDetailsNavKey to NoteDetailsParcelableArguments(noteDetailsType = NoteDetailsType.ADD)
+    )
 
     @Test
-    fun testAddNewNoteState_expectAddPhotoImageViewVisibleAndDisplaysCorrectDrawable() {
-        val args = bundleOf(
-            "noteDetailsType" to NoteDetailsType.ADD
-        )
+    fun testAddNewNoteState_expectBackButtonVisibleAndDisplaysCorrectDrawable() {
         launchFragmentInHiltContainer<com.noteapp.note_details.ui.NoteFragment>(args)
-        onView(withId(R.id.iv_add_photo)).check(
+        onView(withId(R.id.iv_back)).check(
             matches(
                 allOf(
                     isDisplayed(),
-                    DrawableMatcher(R.drawable.ic_add_photo)
+                    DrawableMatcher(R.drawable.ic_arrow_back)
                 )
             )
         )
     }
-
     @Test
     fun testAddNewNoteState_expectEditTextsAreEmpty() {
-        val args = bundleOf(
-            "noteDetailsType" to NoteDetailsType.ADD
-        )
         launchFragmentInHiltContainer<com.noteapp.note_details.ui.NoteFragment>(args)
         onView(withId(R.id.et_title)).check(
             matches(
@@ -80,9 +78,6 @@ class NoteScreenTest {
 
     @Test
     fun testPhotoImageView_addPhotoUrlAndExpectVisible() {
-        val args = bundleOf(
-            "noteDetailsType" to NoteDetailsType.ADD
-        )
         launchFragmentInHiltContainer<com.noteapp.note_details.ui.NoteFragment>(args)
 
         onView(allOf(withId(R.id.iv_photo), withParent(withId(R.id.cl_root)))).check(
@@ -103,9 +98,6 @@ class NoteScreenTest {
 
     @Test
     fun testSaveButtonWithEmptyInputs_expectToastMessageAndNotSavedNote() {
-        val args = bundleOf(
-            "noteDetailsType" to NoteDetailsType.ADD
-        )
         launchFragmentInHiltContainer<com.noteapp.note_details.ui.NoteFragment>(args)
         onView(withId(R.id.btn_save)).perform(click())
         ToastMatcher.onToast((R.string.note_title_not_entered_error))

@@ -9,12 +9,12 @@ import com.noteapp.core.ui.BaseFragment
 import com.noteapp.core.ui.extension.collectFlow
 import com.noteapp.core.ui.extension.disable
 import com.noteapp.core.ui.extension.enable
-import com.noteapp.core.ui.extension.gone
+import com.noteapp.core.ui.extension.hide
 import com.noteapp.core.ui.extension.loadImage
 import com.noteapp.core.ui.extension.showSoftKeyboard
 import com.noteapp.core.ui.extension.showToast
 import com.noteapp.core.ui.extension.themeColor
-import com.noteapp.core.ui.extension.visible
+import com.noteapp.core.ui.extension.show
 import com.noteapp.home.ui.R
 import com.noteapp.home.ui.databinding.DialogAddPhotoBinding
 import com.noteapp.home.ui.databinding.DialogNoteInfoLayoutBinding
@@ -69,8 +69,8 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
             etTitle.setText(uiState.noteUiModel?.title)
             etContent.setText(uiState.noteUiModel?.content)
             ivPhoto.loadImage(uiState.photoUrl)
-            ivInfo.visible()
-            btnSave.gone()
+            ivInfo.show()
+            btnSave.hide()
             ivAddPhoto.setImageResource(R.drawable.ic_edit)
 
         }
@@ -78,11 +78,12 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private fun onAddNewNoteState(photoUrl: String?) {
         if (photoUrl.isNullOrEmpty()) {
-            binding.ivPhoto.gone()
+            binding.ivPhoto.hide()
             binding.ivPhoto.setImageDrawable(null)
             binding.ivAddPhoto.setImageResource(R.drawable.ic_add_photo)
         } else {
             binding.ivPhoto.loadImage(photoUrl)
+            binding.ivPhoto.show()
             // Couldn't find any proper drawable so we'll manually change it's color
             binding.ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
             val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
@@ -97,14 +98,14 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
         with(binding) {
             etTitle.enable()
             etContent.enable()
-            ivInfo.gone()
-            btnSave.visible()
+            ivInfo.hide()
+            btnSave.show()
 
             if (uiState.photoUrl.isNullOrEmpty()) {
-                ivPhoto.gone()
+                ivPhoto.hide()
                 ivAddPhoto.setImageResource(R.drawable.ic_add_photo)
             } else {
-                ivPhoto.visible()
+                ivPhoto.show()
                 ivPhoto.loadImage(uiState.photoUrl)
                 ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
                 val primaryColor =
@@ -185,12 +186,12 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                     note?.createDate?.toStringWithFormat()
                 val modifyDate = note?.modifyDate
                 if (modifyDate != null) {
-                    dialogBinding.tvModifiedDateInfo.visible()
+                    dialogBinding.tvModifiedDateInfo.show()
                     dialogBinding.tvModifiedDateInfo.text =
                         modifyDate.toStringWithFormat()
                 } else {
-                    dialogBinding.tvModifiedDateTitle.gone()
-                    dialogBinding.tvModifiedDateInfo.gone()
+                    dialogBinding.tvModifiedDateTitle.hide()
+                    dialogBinding.tvModifiedDateInfo.hide()
                 }
                 val dialog = AlertDialog.Builder(requireContext(), CoreR.style.DarkDialog)
                     .setView(dialogBinding.root).create()

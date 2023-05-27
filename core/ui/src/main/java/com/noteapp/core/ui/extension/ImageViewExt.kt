@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
  */
 
 fun ImageView.loadImage(url: String?) {
-    if (url.isNullOrEmpty()) gone()
+    if (url.isNullOrEmpty()) hide()
     else {
         Glide.with(context)
             .load(url)

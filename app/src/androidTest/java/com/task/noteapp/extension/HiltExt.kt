@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import com.task.noteapp.MainActivity
+import com.task.noteapp.R
 import dagger.hilt.internal.Preconditions
 
 /**
@@ -17,7 +18,7 @@ import dagger.hilt.internal.Preconditions
 
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,
-    @StyleRes themeResId: Int = androidx.fragment.testing.R.style.FragmentScenarioEmptyFragmentActivityTheme,
+    @StyleRes themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
     crossinline action: Fragment.() -> Unit = {}
 ) {
     val startActivityIntent = Intent.makeMainActivity(
