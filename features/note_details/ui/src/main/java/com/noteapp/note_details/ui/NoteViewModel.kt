@@ -1,10 +1,10 @@
-package com.task.noteapp.features.add_note_view_note.note_details
+package com.noteapp.note_details.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
+import com.noteapp.note_details.shared.model.NoteDetailsType
 import com.noteapp.note_details.domain.usecase.SaveNoteUseCase
-import com.noteapp.home.ui.model.NoteUiModel
+import com.noteapp.note_details.ui.model.NoteUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,11 +15,6 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
-
-/**
- * @author: R. Cemre Ünal,
- * created on 9/22/2022
- */
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(

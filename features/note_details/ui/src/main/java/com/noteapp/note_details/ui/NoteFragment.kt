@@ -1,13 +1,10 @@
-package com.task.noteapp.features.add_note_view_note.note_details.ui
+package com.noteapp.note_details.ui
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.noteapp.core.domain.toString
-import com.task.noteapp.R
-import com.noteapp.core.ui.R as CoreR
+import com.noteapp.core.domain.toStringWithFormat
 import com.noteapp.core.ui.BaseFragment
 import com.noteapp.core.ui.extension.collectFlow
 import com.noteapp.core.ui.extension.disable
@@ -18,20 +15,26 @@ import com.noteapp.core.ui.extension.showSoftKeyboard
 import com.noteapp.core.ui.extension.showToast
 import com.noteapp.core.ui.extension.themeColor
 import com.noteapp.core.ui.extension.visible
-import com.task.noteapp.core.utils.Constant
-import com.task.noteapp.databinding.DialogAddPhotoBinding
-import com.task.noteapp.databinding.DialogNoteInfoLayoutBinding
-import com.task.noteapp.databinding.FragmentNoteBinding
-import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
-import com.task.noteapp.features.add_note_view_note.note_details.NoteViewModel
+import com.noteapp.home.ui.R
+import com.noteapp.home.ui.databinding.DialogAddPhotoBinding
+import com.noteapp.home.ui.databinding.DialogNoteInfoLayoutBinding
+import com.noteapp.home.ui.databinding.FragmentNoteBinding
+import com.noteapp.note_details.shared.NoteDetailsCommunicator
+import com.noteapp.note_details.shared.model.NoteDetailsType
+import com.noteapp.note_details.ui.model.NoteDetailsParcelableArguments
 import dagger.hilt.android.AndroidEntryPoint
+import com.noteapp.core.ui.R as CoreR
 
 
 @AndroidEntryPoint
 class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::inflate) {
 
     private val viewModel by viewModels<NoteViewModel>()
-    private val args by navArgs<NoteFragmentArgs>()
+
+    private val args by lazy {
+        arguments?.getParcelable<NoteDetailsParcelableArguments>(NoteDetailsCommunicator.noteDetailsNavKey)
+            ?: throw IllegalStateException()
+    }
 
     override fun onCreateFinished() {
         if (args.noteDetailsType == NoteDetailsType.ADD) {
@@ -43,7 +46,10 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private val stateCollector: suspend (NoteViewModel.UiState) -> Unit = { uiState ->
         when (uiState.currentState) {
-            NoteViewModel.State.INITIAL -> viewModel.setUiState(args.noteDetailsType, args.note)
+            NoteViewModel.State.INITIAL -> viewModel.setUiState(
+                args.noteDetailsType,
+                args.noteUiModel
+            )
             NoteViewModel.State.VIEW_NOTE_DETAILS -> onViewNoteDetailsState(uiState)
             NoteViewModel.State.ADD_NEW_NOTE -> onAddNewNoteState(uiState.photoUrl)
             NoteViewModel.State.EDIT_NOTE -> onEditNoteState(uiState)
@@ -101,7 +107,8 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                 ivPhoto.visible()
                 ivPhoto.loadImage(uiState.photoUrl)
                 ivAddPhoto.setImageResource(R.drawable.ic_remove_photo)
-                val primaryColor = requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
+                val primaryColor =
+                    requireContext().themeColor(androidx.appcompat.R.attr.colorAccent)
                 ivAddPhoto.setColorFilter(
                     primaryColor,
                     android.graphics.PorterDuff.Mode.SRC_IN
@@ -175,12 +182,12 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                 val dialogBinding =
                     DialogNoteInfoLayoutBinding.inflate(LayoutInflater.from(requireContext()))
                 dialogBinding.tvCreatedDateInfo.text =
-                    note?.createDate?.toString(Constant.DATE_TIME_FORMAT)
+                    note?.createDate?.toStringWithFormat()
                 val modifyDate = note?.modifyDate
                 if (modifyDate != null) {
                     dialogBinding.tvModifiedDateInfo.visible()
                     dialogBinding.tvModifiedDateInfo.text =
-                        modifyDate.toString(Constant.DATE_TIME_FORMAT)
+                        modifyDate.toStringWithFormat()
                 } else {
                     dialogBinding.tvModifiedDateTitle.gone()
                     dialogBinding.tvModifiedDateInfo.gone()

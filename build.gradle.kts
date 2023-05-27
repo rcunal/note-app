@@ -1,4 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
         google()
@@ -8,7 +7,6 @@ buildscript {
         classpath ("com.android.tools.build:gradle:${Dependencies.androidPluginVersion}")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Dependencies.kotlinVersion}")
         classpath ("com.google.dagger:hilt-android-gradle-plugin:${Dependencies.hiltVersion}")
-        classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${Dependencies.navigationVersion}")
     }
 }
 

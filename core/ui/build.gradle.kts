@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
 
@@ -48,8 +47,7 @@ dependencies {
     api("com.google.android.material:material:1.9.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
-    // Dagger Hilt
-    api("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")
-    kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    // Navigation Component
+    api("androidx.navigation:navigation-fragment-ktx:${Dependencies.navigationVersion}")
+    api("androidx.navigation:navigation-ui-ktx:${Dependencies.navigationVersion}")
 }

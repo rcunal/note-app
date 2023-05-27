@@ -46,12 +46,8 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:domain"))
     implementation(project(":core:datasource:local"))
-    implementation(project(":features:home:domain"))
-
     implementation(project(":features:note_details:shared"))
-
-    implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
-    implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")
+    implementation(project(":features:note_details:domain"))
 
     kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
     implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")

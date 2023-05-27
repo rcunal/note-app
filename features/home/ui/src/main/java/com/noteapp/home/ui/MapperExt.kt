@@ -2,7 +2,7 @@ package com.noteapp.home.ui
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.noteapp.core.domain.toString
+import com.noteapp.core.domain.toStringWithFormat
 import com.noteapp.home.domain.Constants.DATE_FORMAT
 import com.noteapp.home.domain.NoteDomainModel
 import com.noteapp.home.ui.model.NoteUiModel
@@ -13,7 +13,7 @@ fun PagingData<NoteDomainModel>.toNoteUiModels() =
             NoteUiModel(
                 id = id,
                 createDate = createDate,
-                formattedCreateDate = createDate.toString(DATE_FORMAT),
+                formattedCreateDate = createDate.toStringWithFormat(DATE_FORMAT),
                 modifyDate = modifyDate,
                 title = title,
                 content = content,

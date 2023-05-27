@@ -2,8 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-kapt")
-    id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -60,6 +60,8 @@ dependencies {
 
     implementation(project(":features:note_details:domain"))
     implementation(project(":features:note_details:data"))
+    implementation(project(":features:note_details:ui"))
+    implementation(project(":features:note_details:shared"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
     implementation("com.google.android.material:material:1.9.0")
@@ -75,7 +77,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
 
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Dependencies.hiltVersion}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
+    implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")
+    kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
 
     // Room
     implementation("androidx.room:room-runtime:${Dependencies.roomVersion}")

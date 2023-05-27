@@ -1,30 +1,39 @@
-package com.task.noteapp.features.add_note_view_note.home.ui
+package com.noteapp.home.ui
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.noteapp.core.ui.BaseFragment
-import com.noteapp.home.ui.NoteAdapter
 import com.noteapp.core.ui.extension.collectLatestFlow
-import com.task.noteapp.databinding.FragmentHomeBinding
-import com.task.noteapp.features.add_note_view_note.common.domain.model.NoteDetailsType
-import com.noteapp.home.ui.HomeViewModel
+import com.noteapp.home.ui.databinding.FragmentHomeBinding
 import com.noteapp.home.ui.model.NoteUiModel
+import com.noteapp.note_details.shared.NoteDetailsCommunicator
+import com.noteapp.note_details.shared.model.NoteDetailsType
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel by viewModels<HomeViewModel>()
 
+    @Inject
+    lateinit var noteDetailsCommunicator: NoteDetailsCommunicator
+
     private val noteClickListener = object : NoteAdapter.NoteClickListener {
         override fun onNoteClick(noteUiModel: NoteUiModel) {
-            findNavController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToAddNoteFragment(
-                    NoteDetailsType.VIEW,
-                    noteUiModel
+            val args = with(noteUiModel) {
+                NoteDetailsCommunicator.NoteDetailsArguments(
+                    noteDetailsType = NoteDetailsType.VIEW,
+                    id = id,
+                    createDate = createDate,
+                    formattedCreateDate = formattedCreateDate,
+                    modifyDate = modifyDate,
+                    title = title,
+                    content = content,
+                    imageUrl = imageUrl,
                 )
-            )
+            }
+            noteDetailsCommunicator.startNoteDetails(noteDetailsArguments = args)
         }
 
         override fun onNoteDeleteClick(noteUiModel: NoteUiModel) {
@@ -48,10 +57,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun initListeners() {
         with(binding) {
             floatingActionButton.setOnClickListener {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToAddNoteFragment(
-                        NoteDetailsType.ADD,
-                        null
+                noteDetailsCommunicator.startNoteDetails(
+                    noteDetailsArguments = NoteDetailsCommunicator.NoteDetailsArguments(
+                        noteDetailsType = NoteDetailsType.ADD
                     )
                 )
             }

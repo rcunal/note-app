@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Title</string>
+    <string name="save">Save</string>
+    <string name="content">Content</string>
+    <string name="ok">OK</string>
+    <string name="add_photo">Add photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove_photo">Remove photo</string>
+    <string name="note_title_not_entered_error">Please enter a title to your note</string>
+    <string name="note_content_not_entered_error">Please enter your note content</string>
+    <string name="enter_photo_url">Enter photo url</string>
+    <string name="date_created">Date created</string>
+    <string name="date_modified">Date modified</string>
+
+</resources>
