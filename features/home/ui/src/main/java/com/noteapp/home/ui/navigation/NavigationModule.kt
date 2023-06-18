@@ -1,18 +1,16 @@
 package com.noteapp.home.ui.navigation
 
-import com.noteapp.core.ui.navigation.NavigationKey
 import com.noteapp.core.ui.navigation.NavigationNode
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoMap
+import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(SingletonComponent::class)
 interface NavigationModule {
-    @IntoMap
-    @NavigationKey(HomeNavigationNode.ROUTE)
+    @IntoSet
     @Binds
-    fun bindNavigationNode(homeNavigationNode: HomeNavigationNode) : NavigationNode
+    fun bindNavigationNode(homeNavigationNode: HomeNavigationNode): NavigationNode
 }

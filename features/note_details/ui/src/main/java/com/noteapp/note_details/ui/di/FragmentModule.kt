@@ -1,7 +1,7 @@
-package com.task.noteapp.core.di
+package com.noteapp.note_details.ui.di
 
 import com.noteapp.note_details.shared.NoteDetailsCommunicator
-import com.task.noteapp.communicator.NoteDetailsCommunicatorImpl
+import com.noteapp.note_details.ui.navigation.NoteDetailsCommunicatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

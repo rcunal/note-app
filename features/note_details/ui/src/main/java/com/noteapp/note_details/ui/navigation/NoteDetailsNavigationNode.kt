@@ -19,7 +19,7 @@ class NoteDetailsNavigationNode @Inject constructor() : NavigationNode {
     }
 
     companion object {
-        const val START_DESTINATION = "note_fragment"
+        private const val START_DESTINATION = "note_fragment"
         const val ROUTE = "note_details"
     }
 

@@ -2,11 +2,12 @@ package com.task.noteapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.createGraph
-import androidx.navigation.fragment.NavHostFragment
 import com.noteapp.core.ui.navigation.NavigationNode
 import com.noteapp.home.ui.navigation.HomeNavigationNode
 import com.task.noteapp.databinding.ActivityMainBinding
+import dagger.Lazy
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -14,7 +15,11 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var navigationNodes: @JvmSuppressWildcards Map<String, NavigationNode>
+    lateinit var navigationNodes: @JvmSuppressWildcards Set<NavigationNode>
+
+    @Inject
+    lateinit var lazyNavController: Lazy<NavController>
+    private val navController by lazy { lazyNavController.get() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_NoteApp)
@@ -25,14 +30,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavGraph() {
-        val navController =
-            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
-
         navController.graph = navController.createGraph(
             startDestination = HomeNavigationNode.ROUTE
         ) {
-            navigationNodes.forEach { entry ->
-                val navNode = entry.value
+            navigationNodes.forEach { navNode ->
                 navNode.addNode(this)
             }
         }

@@ -1,34 +1,21 @@
-package com.task.noteapp.communicator
+package com.noteapp.note_details.ui.navigation
 
-import android.app.Activity
 import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
 import com.noteapp.core.ui.extension.navigateWithAnimation
 import com.noteapp.note_details.shared.NoteDetailsCommunicator
 import com.noteapp.note_details.ui.model.NoteDetailsParcelableArguments
 import com.noteapp.note_details.ui.model.NoteUiModel
-import com.task.noteapp.R
 import javax.inject.Inject
 
-/**
- * Sub navgraphlar için intomap
- * createGraph in app module at runtime
- * tüm destinationlar eklendikten sonra featurelara özel navigator
- */
-
-
-class NoteDetailsCommunicatorImpl @Inject constructor(private val activity: Activity) :
+class NoteDetailsCommunicatorImpl @Inject constructor(private val navController: NavController) :
     NoteDetailsCommunicator {
 
-    // Todo: provide the navController
-    private val navController by lazy { activity.findNavController(R.id.nav_host_fragment) }
     override fun startNoteDetails(noteDetailsArguments: NoteDetailsCommunicator.NoteDetailsArguments) {
-        navController.findDestination("note_details")?.id?.let {
-            navController.navigateWithAnimation(
-                it,
-                bundleOf(NoteDetailsCommunicator.noteDetailsNavKey to noteDetailsArguments.toNoteDetailsParcelableArguments())
-            )
-        }
+        navController.navigateWithAnimation(
+            route = NoteDetailsNavigationNode.ROUTE,
+            args = bundleOf(NoteDetailsCommunicator.noteDetailsNavKey to noteDetailsArguments.toNoteDetailsParcelableArguments())
+        )
     }
 
     private fun NoteDetailsCommunicator.NoteDetailsArguments.toNoteDetailsParcelableArguments(): NoteDetailsParcelableArguments {
