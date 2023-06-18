@@ -27,12 +27,18 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+        }
+        release {
+            isDebuggable = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -66,6 +72,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
     implementation("com.google.android.material:material:1.9.0")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
 
     androidTestImplementation("androidx.test.espresso:espresso-core:${Dependencies.espressoVersion}")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:${Dependencies.espressoVersion}")
