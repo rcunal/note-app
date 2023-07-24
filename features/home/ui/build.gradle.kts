@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":features:home:domain"))
 
     implementation(project(":features:note_details:shared"))
+    implementation(project(":features:home:shared"))
 
     implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
     implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")

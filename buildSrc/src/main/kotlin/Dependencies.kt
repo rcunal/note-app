@@ -3,7 +3,6 @@ object Dependencies {
     const val hiltVersion = "2.45"
     const val androidPluginVersion = "8.0.1"
     const val pagingVersion = "3.1.1"
-    const val navigationVersion = "2.5.3"
     const val roomVersion = "2.5.1"
     const val ktxVersion = "2.6.1"
     const val espressoVersion = "3.5.1"

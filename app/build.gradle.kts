@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":features:note_details:domain"))
     implementation(project(":features:note_details:data"))
     implementation(project(":features:note_details:ui"))
+    implementation(project(":features:home:shared"))
     implementation(project(":features:note_details:shared"))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
@@ -95,10 +96,6 @@ dependencies {
 
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")
-
-    // Navigation Component
-    implementation("androidx.navigation:navigation-fragment-ktx:${Dependencies.navigationVersion}")
-    implementation("androidx.navigation:navigation-ui-ktx:${Dependencies.navigationVersion}")
 
     // KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Dependencies.ktxVersion}")

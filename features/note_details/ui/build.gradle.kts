@@ -48,6 +48,8 @@ dependencies {
     implementation(project(":core:datasource:local"))
     implementation(project(":features:note_details:shared"))
     implementation(project(":features:note_details:domain"))
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
 
     kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
     implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")

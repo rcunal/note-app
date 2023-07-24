@@ -47,10 +47,6 @@ dependencies {
     api("com.google.android.material:material:1.9.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
-    // Navigation Component
-    api("androidx.navigation:navigation-fragment-ktx:${Dependencies.navigationVersion}")
-    api("androidx.navigation:navigation-ui-ktx:${Dependencies.navigationVersion}")
-
     implementation("com.google.dagger:hilt-core:${Dependencies.hiltVersion}")
     kapt("com.google.dagger:hilt-compiler:${Dependencies.hiltVersion}")
 }

@@ -3,7 +3,6 @@ package com.noteapp.note_details.ui
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.noteapp.core.domain.toStringWithFormat
 import com.noteapp.core.ui.BaseFragment
 import com.noteapp.core.ui.extension.collectFlow
@@ -58,7 +57,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
 
     private val eventCollector: suspend (NoteViewModel.Event) -> Unit = { event ->
         when (event) {
-            NoteViewModel.Event.NoteAddedSuccessfully -> findNavController().navigateUp()
+            NoteViewModel.Event.NoteAddedSuccessfully -> requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
@@ -162,7 +161,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>(FragmentNoteBinding::infl
                 }
             }
             ivBack.setOnClickListener {
-                findNavController().navigateUp()
+                requireActivity().supportFragmentManager.popBackStack()
             }
             btnSave.setOnClickListener {
                 when {

@@ -8,6 +8,7 @@ interface NoteDetailsCommunicator {
 
     companion object {
         const val noteDetailsNavKey = "noteDetailsNavKey"
+        const val TAG = "NoteDetailsFragment"
     }
 
     data class NoteDetailsArguments(
