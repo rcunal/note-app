@@ -4,10 +4,11 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.task.noteapp"
 
     defaultConfig {
@@ -16,15 +17,14 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.task.noteapp.NoteAppTestRunner"
-    }
 
-    kapt {
-        arguments {
+        ksp {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
+
+
 
     buildTypes {
         debug {
@@ -91,7 +91,7 @@ dependencies {
     implementation("androidx.room:room-runtime:${Dependencies.roomVersion}")
     implementation("androidx.room:room-ktx:${Dependencies.roomVersion}")
     implementation("androidx.room:room-paging:${Dependencies.roomVersion}")
-    kapt("androidx.room:room-compiler:${Dependencies.roomVersion}")
+    ksp("androidx.room:room-compiler:${Dependencies.roomVersion}")
 
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")
