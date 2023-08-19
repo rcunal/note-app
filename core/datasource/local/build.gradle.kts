@@ -36,12 +36,12 @@ android {
 
 dependencies {
     // Room
-    api("androidx.room:room-runtime:${Dependencies.roomVersion}")
-    api("androidx.room:room-ktx:${Dependencies.roomVersion}")
-    api("androidx.room:room-paging:${Dependencies.roomVersion}")
-    kapt("androidx.room:room-compiler:${Dependencies.roomVersion}")
+    api("androidx.room:room-runtime:${Versions.roomVersion}")
+    api("androidx.room:room-ktx:${Versions.roomVersion}")
+    api("androidx.room:room-paging:${Versions.roomVersion}")
+    kapt("androidx.room:room-compiler:${Versions.roomVersion}")
 
     // Hilt
-    implementation("com.google.dagger:hilt-core:${Dependencies.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Dependencies.hiltVersion}")
+    implementation("com.google.dagger:hilt-core:${Versions.hiltVersion}")
+    kapt("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
 }

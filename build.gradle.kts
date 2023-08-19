@@ -4,9 +4,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath ("com.android.tools.build:gradle:${Dependencies.androidPluginVersion}")
-        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Dependencies.kotlinVersion}")
-        classpath ("com.google.dagger:hilt-android-gradle-plugin:${Dependencies.hiltVersion}")
+        classpath ("com.android.tools.build:gradle:${Versions.androidPluginVersion}")
+        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}")
     }
 }
 

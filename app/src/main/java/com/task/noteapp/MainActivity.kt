@@ -2,6 +2,11 @@ package com.task.noteapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import androidx.navigation.createGraph
 import com.noteapp.core.ui.navigation.NavigationNode
@@ -38,4 +43,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+}
+
+@Composable
+fun Test() {
+    var x by remember { mutableStateOf("") }
 }

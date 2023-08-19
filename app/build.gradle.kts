@@ -51,6 +51,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompilerVersion
     }
 }
 
@@ -69,40 +74,40 @@ dependencies {
     implementation(project(":features:note_details:ui"))
     implementation(project(":features:note_details:shared"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}")
     implementation("com.google.android.material:material:1.9.0")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
 
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Dependencies.espressoVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Dependencies.espressoVersion}")
-    debugImplementation("androidx.fragment:fragment-testing:${Dependencies.fragmentVersion}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espressoVersion}")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Versions.espressoVersion}")
+    debugImplementation("androidx.fragment:fragment-testing:${Versions.fragmentVersion}")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
 
-    androidTestImplementation("com.google.dagger:hilt-android-testing:${Dependencies.hiltVersion}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.hiltVersion}")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
 
-    implementation("com.google.dagger:hilt-android:${Dependencies.hiltVersion}")
-    kapt("com.google.dagger:hilt-android-compiler:${Dependencies.hiltVersion}")
+    implementation("com.google.dagger:hilt-android:${Versions.hiltVersion}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
 
     // Room
-    implementation("androidx.room:room-runtime:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-ktx:${Dependencies.roomVersion}")
-    implementation("androidx.room:room-paging:${Dependencies.roomVersion}")
-    ksp("androidx.room:room-compiler:${Dependencies.roomVersion}")
+    implementation("androidx.room:room-runtime:${Versions.roomVersion}")
+    implementation("androidx.room:room-ktx:${Versions.roomVersion}")
+    implementation("androidx.room:room-paging:${Versions.roomVersion}")
+    ksp("androidx.room:room-compiler:${Versions.roomVersion}")
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:${Dependencies.pagingVersion}")
+    implementation("androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}")
 
     // Navigation Component
-    implementation("androidx.navigation:navigation-fragment-ktx:${Dependencies.navigationVersion}")
-    implementation("androidx.navigation:navigation-ui-ktx:${Dependencies.navigationVersion}")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}")
 
     // KTX
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Dependencies.ktxVersion}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.ktxVersion}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ktxVersion}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.ktxVersion}")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")

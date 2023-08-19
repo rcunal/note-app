@@ -9,5 +9,5 @@ java {
 }
 
 dependencies {
-    api("androidx.paging:paging-common:${Dependencies.pagingVersion}")
+    api("androidx.paging:paging-common:${Versions.pagingVersion}")
 }
