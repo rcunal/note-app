@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -36,12 +37,12 @@ android {
 
 dependencies {
     // Room
-    api("androidx.room:room-runtime:${Versions.roomVersion}")
-    api("androidx.room:room-ktx:${Versions.roomVersion}")
-    api("androidx.room:room-paging:${Versions.roomVersion}")
-    kapt("androidx.room:room-compiler:${Versions.roomVersion}")
+    api(libs.room.runtime)
+    api(libs.room.ktx)
+    api(libs.room.paging)
+    ksp(libs.room.compiler)
 
     // Hilt
-    implementation("com.google.dagger:hilt-core:${Versions.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 }

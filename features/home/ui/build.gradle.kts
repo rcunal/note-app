@@ -50,9 +50,9 @@ dependencies {
 
     implementation(project(":features:note_details:shared"))
 
-    implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
-    implementation("androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}")
+    implementation(libs.swipe.reveal.layout)
+    implementation(libs.androidx.paging.runtime.ktx)
 
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
-    implementation("com.google.dagger:hilt-android:${Versions.hiltVersion}")
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
 }

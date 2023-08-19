@@ -40,44 +40,34 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompilerVersion
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
     }
 }
 
 dependencies {
-    api("androidx.constraintlayout:constraintlayout:2.1.4")
-    api("androidx.appcompat:appcompat:1.6.1")
-    api("androidx.core:core-ktx:1.10.1")
-    api("androidx.fragment:fragment-ktx:${Versions.fragmentVersion}")
-    api("com.google.android.material:material:1.9.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1")
+    api(libs.androidx.constraintlayout)
+    api(libs.androidx.appcompat)
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.fragment.ktx)
+    api(libs.material)
+    implementation(libs.glide)
 
     // Navigation Component
-    api("androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}")
-    api("androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}")
+    api(libs.androidx.navigation.fragment.ktx)
+    api(libs.androidx.navigation.ui.ktx)
 
-    implementation("com.google.dagger:hilt-core:${Versions.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 
-/*    val composeBom = platform("androidx.compose:compose-bom:2023.08.00")
-    api(composeBom)
-    api("androidx.compose.material3:material3")
-    api("androidx.compose.ui:ui-tooling-preview")
-    debugApi("androidx.compose.ui:ui-tooling")*/
-
-
-    api("androidx.activity:activity-compose:1.7.2")
-    api(platform("androidx.compose:compose-bom:2023.03.00"))
-    api("androidx.compose.ui:ui")
-    api("androidx.compose.ui:ui-graphics")
-    api("androidx.compose.ui:ui-tooling-preview")
-    api("androidx.compose.material3:material3")
-    debugApi("androidx.compose.ui:ui-tooling")
-    debugApi("androidx.compose.ui:ui-test-manifest")
-    api("androidx.lifecycle:lifecycle-runtime-compose:${Versions.ktxVersion}")
-    api("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.ktxVersion}")
-
-
-//    api("androidx.activity:activity-compose:1.7.3")
-//    api("androidx.lifecycle:lifecycle-viewmodel-compose")
+    api(libs.androidx.activity.compose)
+    api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.compose.ui)
+    api(libs.androidx.compose.ui.graphics)
+    api(libs.androidx.compose.ui.tooling.preview)
+    api(libs.androidx.compose.material3)
+    debugApi(libs.androidx.compose.ui.tooling)
+    debugApi(libs.androidx.compose.ui.testManifest)
+    api(libs.androidx.lifecycle.runtimeCompose)
+    api(libs.androidx.lifecycle.viewModelCompose)
 }

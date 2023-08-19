@@ -38,7 +38,7 @@ dependencies {
     implementation(project(":core:di"))
     implementation(project(":core:datasource:local"))
     implementation(project(":features:home:domain"))
-    implementation("javax.inject:javax.inject:1")
-    implementation("com.google.dagger:hilt-core:${Versions.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
+    implementation(libs.javax.inject)
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 }

@@ -55,7 +55,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompilerVersion
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
     }
 }
 
@@ -74,46 +75,46 @@ dependencies {
     implementation(project(":features:note_details:ui"))
     implementation(project(":features:note_details:shared"))
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.material)
+    testImplementation(libs.junit4)
+    testImplementation(libs.kotlinx.coroutines.test)
 
-    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.espressoVersion}")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Versions.espressoVersion}")
-    debugImplementation("androidx.fragment:fragment-testing:${Versions.fragmentVersion}")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    debugImplementation(libs.androidx.fragment.testing)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.androidx.junit)
 
-    androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.hiltVersion}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
 
-    implementation("com.google.dagger:hilt-android:${Versions.hiltVersion}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     // Room
-    implementation("androidx.room:room-runtime:${Versions.roomVersion}")
-    implementation("androidx.room:room-ktx:${Versions.roomVersion}")
-    implementation("androidx.room:room-paging:${Versions.roomVersion}")
-    ksp("androidx.room:room-compiler:${Versions.roomVersion}")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.room.compiler)
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}")
+    implementation(libs.androidx.paging.runtime.ktx)
 
     // Navigation Component
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}")
-    implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // KTX
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ktxVersion}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.ktxVersion}")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation(libs.kotlinx.coroutines.android)
 
     //swipe layout
-    implementation("com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1")
+    implementation(libs.swipe.reveal.layout)
 
-    implementation("com.github.bumptech.glide:glide:4.15.1") // TODO: will be removed after moving fragments
+    implementation(libs.glide) // TODO: will be removed after moving fragments
 }

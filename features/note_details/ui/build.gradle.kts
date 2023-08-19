@@ -49,6 +49,6 @@ dependencies {
     implementation(project(":features:note_details:shared"))
     implementation(project(":features:note_details:domain"))
 
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}")
-    implementation("com.google.dagger:hilt-android:${Versions.hiltVersion}")
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
 }

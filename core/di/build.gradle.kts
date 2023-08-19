@@ -10,8 +10,8 @@ java {
 }
 
 dependencies {
-    api("javax.inject:javax.inject:1")
-    api("com.google.dagger:hilt-core:${Versions.hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${Versions.hiltVersion}")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    api(libs.javax.inject)
+    api(libs.hilt.core)
+    kapt(libs.hilt.compiler)
+    api(libs.kotlinx.coroutines.core)
 }
