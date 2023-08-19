@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("noteapp.android.application.compose")
     kotlin("android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
@@ -23,8 +23,6 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
-
-
 
     buildTypes {
         debug {
@@ -51,13 +49,8 @@ android {
 
     buildFeatures {
         viewBinding = true
-        compose = true
     }
 
-    composeOptions {
-        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-        kotlinCompilerExtensionVersion = libs.findVersion("androidxComposeCompiler").get().toString()
-    }
 }
 
 dependencies {

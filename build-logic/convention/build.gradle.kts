@@ -4,14 +4,16 @@ plugins {
     `kotlin-dsl`
 }
 
+group = "com.cemre.convention.extensions.buildlogic"
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
@@ -25,10 +27,21 @@ dependencies {
 
 gradlePlugin {
     plugins {
-/*        register("androidApplicationCompose") {
-            id = "nowinandroid.android.application.compose"
+        register("androidLibrary") {
+            id = "noteapp.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "noteapp.android.library.compose"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+        register("androidApplicationCompose") {
+            id = "noteapp.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+    }
+
+/*    plugins {
         register("androidApplication") {
             id = "nowinandroid.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
@@ -36,14 +49,6 @@ gradlePlugin {
         register("androidApplicationJacoco") {
             id = "nowinandroid.android.application.jacoco"
             implementationClass = "AndroidApplicationJacocoConventionPlugin"
-        }
-        register("androidLibraryCompose") {
-            id = "nowinandroid.android.library.compose"
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
-        }
-        register("androidLibrary") {
-            id = "nowinandroid.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidFeature") {
             id = "nowinandroid.android.feature"
@@ -72,6 +77,6 @@ gradlePlugin {
         register("androidFlavors") {
             id = "nowinandroid.android.application.flavors"
             implementationClass = "AndroidApplicationFlavorsConventionPlugin"
-        }*/
-    }
+        }
+    }*/
 }
