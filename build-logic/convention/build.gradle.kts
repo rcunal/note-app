@@ -27,6 +27,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("jvmLibrary") {
+            id = "noteapp.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
         register("androidLibrary") {
             id = "noteapp.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
