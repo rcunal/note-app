@@ -1,6 +1,6 @@
 plugins {
     id("noteapp.android.library")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
@@ -25,6 +25,6 @@ dependencies {
     implementation(libs.swipe.reveal.layout)
     implementation(libs.androidx.paging.runtime.ktx)
 
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
 }

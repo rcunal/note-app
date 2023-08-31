@@ -1,11 +1,11 @@
 plugins {
     id("noteapp.jvm.library")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 dependencies {
     api(libs.javax.inject)
     api(libs.hilt.core)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     api(libs.kotlinx.coroutines.core)
 }

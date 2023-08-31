@@ -1,6 +1,6 @@
 plugins {
     id("noteapp.android.library")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
@@ -21,6 +21,6 @@ dependencies {
     implementation(project(":features:note_details:shared"))
     implementation(project(":features:note_details:domain"))
 
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
 }

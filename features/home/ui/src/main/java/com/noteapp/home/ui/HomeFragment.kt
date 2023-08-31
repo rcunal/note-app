@@ -1,9 +1,12 @@
 package com.noteapp.home.ui
 
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.noteapp.core.ui.BaseFragment
 import com.noteapp.core.ui.extension.collectLatestFlow
+import com.noteapp.core.ui.viewBinding
 import com.noteapp.home.ui.databinding.FragmentHomeBinding
 import com.noteapp.home.ui.model.NoteUiModel
 import com.noteapp.note_details.shared.NoteDetailsCommunicator
@@ -12,8 +15,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
+    private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel by viewModels<HomeViewModel>()
 
     @Inject
@@ -43,7 +47,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private val noteAdapter = NoteAdapter(noteClickListener)
 
-    override fun onCreateFinished() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
         binding.rvHomePage.adapter = noteAdapter
         collectLatestFlow(viewModel.state, stateCollector)
     }
@@ -54,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    override fun initListeners() {
+    private fun initListeners() {
         with(binding) {
             floatingActionButton.setOnClickListener {
                 noteDetailsCommunicator.startNoteDetails(

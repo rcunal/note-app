@@ -1,7 +1,7 @@
 plugins {
     id("noteapp.android.library")
     id("noteapp.android.library.compose")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -25,5 +25,5 @@ dependencies {
     api(libs.androidx.navigation.ui.ktx)
 
     implementation(libs.hilt.core)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }

@@ -1,6 +1,5 @@
 plugins {
     id("noteapp.android.library")
-    id("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
 
@@ -17,5 +16,5 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.core)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }

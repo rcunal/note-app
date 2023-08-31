@@ -1,6 +1,6 @@
 plugins {
     id("noteapp.android.library")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -13,5 +13,5 @@ dependencies {
     implementation(project(":features:home:domain"))
     implementation(libs.javax.inject)
     implementation(libs.hilt.core)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }

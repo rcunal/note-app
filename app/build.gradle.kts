@@ -1,7 +1,6 @@
 plugins {
     id("noteapp.android.application.compose")
     kotlin("android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
@@ -81,10 +80,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
 
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
+    kspAndroidTest(libs.hilt.android.compiler)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Room
     implementation(libs.room.runtime)
