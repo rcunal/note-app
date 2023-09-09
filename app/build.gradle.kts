@@ -17,10 +17,6 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.task.noteapp.NoteAppTestRunner"
-
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
     }
 
     buildTypes {
@@ -107,6 +103,4 @@ dependencies {
 
     //swipe layout
     implementation(libs.swipe.reveal.layout)
-
-    implementation(libs.glide) // TODO: will be removed after moving fragments
 }

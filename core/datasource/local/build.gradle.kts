@@ -5,6 +5,10 @@ plugins {
 
 android {
     namespace = "com.noteapp.datasource.local"
+
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
 
 dependencies {
