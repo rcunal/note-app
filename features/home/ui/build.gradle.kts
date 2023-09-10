@@ -1,5 +1,6 @@
 plugins {
     id("noteapp.android.library")
+    id("noteapp.android.library.compose")
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
@@ -7,10 +8,6 @@ plugins {
 
 android {
     namespace = "com.noteapp.home.ui"
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
@@ -22,8 +19,8 @@ dependencies {
 
     implementation(project(":features:note_details:shared"))
 
-    implementation(libs.swipe.reveal.layout)
     implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.compose.paging)
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)

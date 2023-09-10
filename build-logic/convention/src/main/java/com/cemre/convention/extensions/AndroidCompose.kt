@@ -29,9 +29,18 @@ internal fun Project.configureAndroidCompose(
         dependencies {
             val bom = libs.findLibrary("androidx-compose-bom").get()
             val runtimeCompose = libs.findLibrary("androidx-lifecycle-runtimeCompose").get()
+            val coilCompose = libs.findLibrary("coil-kt-compose").get()
+            val composeUiTooling = libs.findLibrary("androidx-compose-ui-tooling").get()
+            val composeUiToolingPreview = libs.findLibrary("androidx-compose-ui-tooling-preview").get()
+            val composeMaterial3 = libs.findLibrary("androidx-compose-material3").get()
+
 
             add("api", runtimeCompose)
             add("api", platform(bom))
+            add("implementation", coilCompose)
+            add("debugImplementation", composeUiTooling)
+            add("implementation", composeUiToolingPreview)
+            add("implementation", composeMaterial3)
         }
     }
 
