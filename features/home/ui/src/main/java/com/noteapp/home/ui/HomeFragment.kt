@@ -13,8 +13,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,6 +55,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -108,10 +112,21 @@ class HomeFragment : Fragment() {
                             }
                         }
                     ) { paddingValues ->
+                        val layoutDirection = LocalLayoutDirection.current
+
+                        val calculatedPaddingValues = remember {
+                            PaddingValues(
+                                start = paddingValues.calculateStartPadding(layoutDirection) + 20.dp,
+                                end = paddingValues.calculateEndPadding(layoutDirection) + 20.dp,
+                                top = paddingValues.calculateTopPadding(),
+                                bottom = paddingValues.calculateBottomPadding()
+                            )
+                        }
                         val notes = viewModel.notes.collectAsLazyPagingItems()
 
                         LazyColumn(
-                            modifier = Modifier.padding(horizontal = 20.dp),
+                            modifier = Modifier
+                                .padding(calculatedPaddingValues),
                             state = lazyListState,
                             verticalArrangement = Arrangement.spacedBy(20.dp)
                         ) {
@@ -136,7 +151,6 @@ class HomeFragment : Fragment() {
                                 )
                             }
                         }
-                        paddingValues
                     }
                 }
             }
@@ -170,6 +184,7 @@ class HomeFragment : Fragment() {
     }
 }
 
+// todo: add swipe to reveal animation to this
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DismissibleNoteItem(
