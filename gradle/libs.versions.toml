@@ -7,7 +7,7 @@ androidxAppCompat = "1.6.1"
 androidxBrowser = "1.6.0"
 androidxComposeBom = "2023.08.00"
 androidxComposeCompiler = "1.5.1"
-androidxComposeMaterial3 = "1.2.0-alpha05"
+androidxComposeMaterial3 = "1.2.0-alpha07"
 androidxComposeRuntimeTracing = "1.0.0-alpha03"
 androidxConstraintlayout = "2.1.4"
 androidxCore = "1.10.1"
@@ -30,7 +30,7 @@ androidxTracing = "1.1.0"
 androidxUiAutomator = "2.2.0"
 androidxWindowManager = "1.1.0"
 androidxWork = "2.8.1"
-coil = "2.2.2"
+coil = "2.4.0"
 espressoContrib = "3.5.1"
 firebaseBom = "32.2.2"
 firebaseCrashlyticsPlugin = "2.9.8"
@@ -113,6 +113,7 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "androidxPaging" }
 androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidxPaging" }
+androidx-compose-paging = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPaging" }
 androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomPaging" }
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
