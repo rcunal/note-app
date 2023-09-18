@@ -18,7 +18,6 @@ dependencies {
     api(libs.androidx.core.ktx)
     api(libs.androidx.fragment.ktx)
     api(libs.material)
-    implementation(libs.glide)
 
     // Navigation Component
     api(libs.androidx.navigation.fragment.ktx)
