@@ -1,5 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.cemre.convention.extensions.configureAndroidCompose
+import com.noteapp.convention.extensions.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
