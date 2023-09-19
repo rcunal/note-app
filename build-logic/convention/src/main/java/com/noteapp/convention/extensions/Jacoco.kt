@@ -1,4 +1,4 @@
-package com.cemre.convention.extensions
+package com.noteapp.convention.extensions
 
 import com.android.build.api.variant.AndroidComponentsExtension
 import org.gradle.api.Project

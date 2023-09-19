@@ -1,10 +1,10 @@
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import com.cemre.convention.extensions.configureGradleManagedDevices
-import com.cemre.convention.extensions.configureKotlinAndroid
-import com.cemre.convention.extensions.configureKotlinAndroidToolchain
-import com.cemre.convention.extensions.configurePrintApksTask
-import com.cemre.convention.extensions.disableUnnecessaryAndroidTests
+import com.noteapp.convention.extensions.configureGradleManagedDevices
+import com.noteapp.convention.extensions.configureKotlinAndroid
+import com.noteapp.convention.extensions.configureKotlinAndroidToolchain
+import com.noteapp.convention.extensions.configurePrintApksTask
+import com.noteapp.convention.extensions.disableUnnecessaryAndroidTests
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension

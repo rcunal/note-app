@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-import com.cemre.convention.extensions.configureKotlinJvm
+import com.noteapp.convention.extensions.configureKotlinJvm
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
