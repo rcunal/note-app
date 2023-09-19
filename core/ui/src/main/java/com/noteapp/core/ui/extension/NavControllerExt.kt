@@ -6,6 +6,7 @@ import androidx.navigation.NavOptions
 import com.noteapp.core.ui.R
 
 fun NavController.navigateWithAnimation(route: String, args: Bundle?, navOptions: NavOptions? = null) {
+    println()
     findDestination(route)?.id?.let { destinationId ->
         val navigationOptions = navOptions ?: NavOptions.Builder()
             .setEnterAnim(R.anim.slide_in_right)
