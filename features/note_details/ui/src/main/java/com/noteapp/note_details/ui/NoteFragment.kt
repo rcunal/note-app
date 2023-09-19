@@ -42,7 +42,6 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        println()
 
         initListeners()
 
